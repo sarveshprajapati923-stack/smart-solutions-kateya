@@ -2,36 +2,166 @@ import { createClient } from '@supabase/supabase-js';
 
 export default async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'no-store');
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({
+      error: 'Method not allowed'
+    });
   }
 
-  const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY } = process.env;
+  const {
+    SUPABASE_URL,
+    SUPABASE_SERVICE_ROLE_KEY
+  } = process.env;
 
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    return res.status(500).json({ error: 'Server configuration missing' });
+    return res.status(500).json({
+      error: 'Server configuration missing'
+    });
   }
 
   try {
     const supabase = createClient(
       SUPABASE_URL,
-      SUPABASE_SERVICE_ROLE_KEY
+      SUPABASE_SERVICE_ROLE_KEY,
+      {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false
+        }
+      }
     );
 
-    const { customer_name, customer_phone, customer_address, items, total_amount } = req.body;
+    const body = req.body || {};
 
+    const {
+      customer_name,
+      customer_phone,
+      customer_address,
+      items
+    } = body;
+
+    // Validate customer details
     if (
-      typeof customer_name !== 'string' || !customer_name.trim() ||
-      !/^\d{10}$/.test(String(customer_phone)) ||
-      typeof customer_address !== 'string' || !customer_address.trim() ||
-      !Array.isArray(items) || items.length === 0 ||
-      !Number.isFinite(Number(total_amount)) || Number(total_amount) < 3100
+      typeof customer_name !== 'string' ||
+      customer_name.trim().length < 2 ||
+      customer_name.trim().length > 100 ||
+      !/^[6-9]\d{9}$/.test(String(customer_phone || '')) ||
+      typeof customer_address !== 'string' ||
+      customer_address.trim().length < 10 ||
+      customer_address.trim().length > 500
     ) {
-      return res.status(400).json({ error: 'Invalid order details' });
+      return res.status(400).json({
+        error: 'Please enter valid customer details.'
+      });
     }
 
-    const order_number = 'SSK-' + Date.now().toString();
+    // Validate cart
+    if (
+      !Array.isArray(items) ||
+      items.length === 0 ||
+      items.length > 50
+    ) {
+      return res.status(400).json({
+        error: 'Invalid cart items.'
+      });
+    }
+
+    const quantities = new Map();
+
+    for (const item of items) {
+      const id = String(item.id ?? '');
+      const qty = Number(item.qty);
+
+      if (
+        !/^\d+$/.test(id) ||
+        !Number.isSafeInteger(qty) ||
+        qty < 1 ||
+        qty > 1000
+      ) {
+        return res.status(400).json({
+          error: 'Invalid product or quantity.'
+        });
+      }
+
+      quantities.set(
+        id,
+        (quantities.get(id) || 0) + qty
+      );
+
+      if (quantities.get(id) > 1000) {
+        return res.status(400).json({
+          error: 'Quantity limit exceeded.'
+        });
+      }
+    }
+
+    const productIds = [...quantities.keys()];
+
+    // Fetch trusted prices from the database
+    const { data: products, error: productError } =
+      await supabase
+        .from('products')
+        .select('id, name, price, active, stock')
+        .in('id', productIds);
+
+    if (productError) {
+      console.error('Product lookup failed:', productError.message);
+
+      return res.status(500).json({
+        error: 'Could not verify products.'
+      });
+    }
+
+    if (
+      !products ||
+      products.length !== productIds.length
+    ) {
+      return res.status(400).json({
+        error: 'One or more products are unavailable.'
+      });
+    }
+
+    let total = 0;
+    const verifiedItems = [];
+
+    for (const product of products) {
+      const qty = quantities.get(String(product.id));
+      const price = Number(product.price);
+
+      if (
+        product.active !== true ||
+        !Number.isFinite(price) ||
+        price < 0 ||
+        !Number.isInteger(product.stock) ||
+        product.stock < qty
+      ) {
+        return res.status(400).json({
+          error: 'A product is inactive or out of stock.'
+        });
+      }
+
+      total += price * qty;
+
+      verifiedItems.push({
+        id: product.id,
+        name: product.name,
+        price,
+        qty
+      });
+    }
+
+    if (!Number.isFinite(total) || total < 3100) {
+      return res.status(400).json({
+        error: 'Minimum order value is ₹3,100.'
+      });
+    }
+
+    // Save the verified order
+    const order_number =
+      'SSK-' + crypto.randomUUID();
 
     const { data, error } = await supabase
       .from('orders')
@@ -40,8 +170,8 @@ export default async function handler(req, res) {
         customer_name: customer_name.trim(),
         customer_phone: String(customer_phone),
         customer_address: customer_address.trim(),
-        items,
-        total_amount: Number(total_amount),
+        items: verifiedItems,
+        total_amount: Number(total.toFixed(2)),
         payment_method: 'COD',
         status: 'Pending'
       }])
@@ -50,12 +180,23 @@ export default async function handler(req, res) {
 
     if (error) {
       console.error('Order insert failed:', error.message);
-      return res.status(500).json({ error: 'Could not save order' });
+
+      return res.status(500).json({
+        error: 'Could not save order.'
+      });
     }
 
-    return res.status(201).json({ success: true, order_number: data.order_number });
+    return res.status(201).json({
+      success: true,
+      order_number: data.order_number,
+      total_amount: Number(total.toFixed(2))
+    });
+
   } catch (error) {
-    console.error('Order API failed:', error.message);
-    return res.status(500).json({ error: 'Server error' });
+    console.error('Order API error:', error.message);
+
+    return res.status(500).json({
+      error: 'Server error.'
+    });
   }
-}
+      }
