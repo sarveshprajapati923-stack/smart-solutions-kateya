@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,11 +31,44 @@
     .admin-area{display:none;min-height:100vh;background:#f5f7fb;padding:22px 0}.admin-area.show{display:block}.admin-layout{display:grid;grid-template-columns:230px 1fr;gap:20px}.admin-side,.admin-main{background:white;border:1px solid var(--line);border-radius:18px;padding:20px}.admin-side h2{font-size:18px;color:var(--navy)}.admin-side button{display:block;width:100%;text-align:left;border:0;background:#f4f6fb;padding:12px;border-radius:10px;margin:7px 0;color:#46516b;font-weight:800}.admin-side button.active{background:#e8eeff;color:#3157ce}.admin-main h1{font-size:29px;letter-spacing:-1px;margin:0 0 5px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:16px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;color:var(--navy);margin-top:7px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:#66718a;background:#f8f9fc}.admin-login{max-width:390px;margin:50px auto;background:white;border:1px solid var(--line);border-radius:20px;padding:26px}.admin-login h2{color:var(--navy);margin-top:0}.hidden{display:none!important}
     @media(max-width:850px){.navlinks{display:none}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:300px}.benefit-grid{grid-template-columns:repeat(2,1fr)}.product-grid{grid-template-columns:repeat(2,1fr)}.about-grid,.contact-grid{grid-template-columns:1fr}.admin-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:480px){.topbar .wrap{justify-content:center}.nav{height:66px}.brand{font-size:16px}.brandmark{width:37px;height:37px}.nav .btn{padding:10px 11px;font-size:12px}.hero{padding-top:36px}.hero p{font-size:15px}.hero-art{min-height:270px}.orb{width:240px;height:240px}.device{padding:16px}.device-screen{min-height:145px}.float-card{padding:10px;font-size:10px}.fc1{left:-2px}.fc2{right:-2px}.benefit-grid{gap:8px}.benefit{padding:12px 9px}.benefit .emoji{font-size:19px}.product-grid{gap:10px}.product-visual{height:120px;font-size:48px}.product-body{padding:11px}.product h3{font-size:13px}.product-desc{font-size:11px}.price{font-size:16px}.add{padding:8px}.promo{padding:22px;align-items:flex-start}.promo h3{font-size:20px}.promo-badge{font-size:30px}.section-head{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:1fr}.drawer{padding:18px}}
+
+    /* Wholesale-catalog inspired layout */
+    body{background:#f7f7f5;color:#202124}
+    .topbar{background:#202124;color:#f5f5f5}
+    header{background:#fff}
+    .brand{color:#202124}.brandmark{background:#202124;border-radius:9px;box-shadow:none}
+    .hero{padding:35px 0 28px;background:#fff;}
+    .hero-grid{grid-template-columns:1fr .75fr;gap:20px}
+    .eyebrow{background:#fff4e7;border-color:#ffe1bd;color:#8b4c08;border-radius:5px;letter-spacing:.6px}
+    h1{color:#202124;letter-spacing:-1.3px;font-size:clamp(32px,4.6vw,52px)}
+    .hero p{color:#555;max-width:560px}
+    .btn-primary{background:#202124;box-shadow:none}.btn-primary:hover{background:#3d3d3d}
+    .btn-light{background:#f3f3f3;color:#202124}
+    .hero-art{min-height:250px;background:linear-gradient(135deg,#fff0db,#fce8ef 48%,#e6f5ff);border-radius:14px;overflow:hidden}
+    .orb{width:210px;height:210px;background:linear-gradient(135deg,#ffd9a8,#ffc5d8);right:18%;top:15%}
+    .device{width:min(290px,90%);padding:17px;border-radius:18px;background:linear-gradient(145deg,#333,#111);transform:rotate(0deg)}
+    .device-screen{background:linear-gradient(135deg,#e9a23b,#ed759d);min-height:135px;padding:18px}
+    .device-screen strong{font-size:24px}.device-icons span{background:#ffffff28}
+    .float-card{border-radius:10px}.fc1{left:10px;bottom:15px}.fc2{right:10px;top:15px}
+    .benefits{padding:16px 0}.benefit{border-radius:10px;box-shadow:none}.benefit-grid{gap:10px}
+    section.section{padding:30px 0}.section h2{color:#202124}.kicker{color:#a05b11}
+    .category-row{gap:8px}.chip{border-radius:7px;color:#444}.chip.active,.chip:hover{background:#202124;border-color:#202124}
+    .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+    .product{border-radius:11px;box-shadow:0 2px 8px #00000008}.product:hover{transform:translateY(-3px);box-shadow:0 8px 22px #00000012}
+    .product-visual{height:180px;background:linear-gradient(135deg,#fff2e5,#fce8ef);font-size:70px}
+    .product:nth-child(4n+2) .product-visual{background:linear-gradient(135deg,#e5f5ff,#e6e8ff)}
+    .product:nth-child(4n+3) .product-visual{background:linear-gradient(135deg,#e9f8e8,#fff4d9)}
+    .product:nth-child(4n+4) .product-visual{background:linear-gradient(135deg,#f4e9ff,#e7f8ff)}
+    .tag{border-radius:5px;color:#222;background:#fff}.product h3{color:#202124}.price{color:#202124}.add{border-radius:7px;background:#f1f1f1;color:#222}
+    .promo{background:#242424;border-radius:12px}.about-card{background:#fff0db;border-radius:12px}.contact-card{border-radius:12px}
+    footer{background:#202124}
+    @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-art{min-height:250px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-visual{height:145px}}
+    @media(max-width:480px){.hero{padding-top:28px}.hero-art{min-height:220px}.product-grid{gap:10px}.product-visual{height:125px;font-size:50px}.product-body{padding:10px}.product h3{font-size:13px}.product-desc{min-height:30px}}
   </style>
 </head>
 <body>
 <div id="storefront">
-  <div class="topbar"><div class="wrap"><span>✦ Smart solutions for everyday life</span><span>📍 Kateya, Gopalganj, Bihar</span></div></div>
+  <div class="topbar"><div class="wrap"><span>Wholesale products, trending gifts & seasonal finds</span><span>📍 Kateya, Gopalganj, Bihar</span></div></div>
   <header><div class="wrap nav">
     <a class="brand" href="#"><span class="brandmark">S</span><span>SMART <span style="color:#4169e1">SOLUTIONS</span><small style="display:block;font-size:10px;letter-spacing:2px;color:#7a8498;margin-top:2px">KATEYA</small></span></a>
     <nav class="navlinks"><a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
@@ -43,27 +76,27 @@
   </div></header>
   <main>
     <section class="hero" id="home"><div class="wrap hero-grid">
-      <div><span class="eyebrow">✦ Your local smart store</span><h1>Smart choices.<br><span style="color:#4169e1">Better living.</span></h1>
-        <p>Discover useful electronics, accessories and everyday tech essentials at Smart Solutions, Kateya. Simple shopping, friendly service and convenient Cash on Delivery.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="#products">Explore Products →</a><a class="btn btn-light" href="#contact">Contact Store</a></div>
-        <div class="trust"><span>✓ Cash on Delivery</span><span>✓ Local support</span><span>✓ Easy ordering</span></div>
+      <div><span class="eyebrow">TRENDING • GIFTING • SEASONAL PRODUCTS</span><h1>Discover Products<br><span style="color:#4169e1">That Everyone Loves.</span></h1>
+        <p>Explore trending toys, gifting items, seasonal lights, fans and everyday products from Smart Solutions, Kateya. Browse the catalogue, check prices and send an order enquiry easily.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#products">Browse Catalogue →</a><a class="btn btn-light" href="#contact">Order Enquiry</a></div>
+        <div class="trust"><span>✓ Prices shown clearly</span><span>✓ Easy product browsing</span><span>✓ WhatsApp enquiries</span></div>
       </div>
-      <div class="hero-art"><div class="orb"></div><div class="device"><div class="device-top"><span>SMART SOLUTIONS</span><span>● ● ●</span></div><div class="device-screen"><span style="font-size:11px;letter-spacing:2px">TECH MADE SIMPLE</span><strong>Upgrade your everyday.</strong><span style="font-size:12px">Explore. Choose. Order.</span></div><div class="device-icons"><span>🎧</span><span>⌚</span><span>🔊</span><span>📱</span></div></div><div class="float-card fc1"><b>COD Available</b>Pay on delivery</div><div class="float-card fc2"><b>Local Store</b>Kateya • Gopalganj</div></div>
+      <div class="hero-art"><div class="orb"></div><div class="device"><div class="device-top"><span>PRODUCT CATALOGUE</span><span>● ● ●</span></div><div class="device-screen"><span style="font-size:11px;letter-spacing:2px">TRENDING COLLECTION</span><strong>Find your next best-seller.</strong><span style="font-size:12px">Browse • Add to cart • Enquire</span></div><div class="device-icons"><span>🧸</span><span>🎁</span><span>💡</span><span>🌀</span></div></div><div class="float-card fc1"><b>Product Catalogue</b>Prices displayed</div><div class="float-card fc2"><b>Easy Enquiry</b>Order via WhatsApp</div></div>
     </div></section>
     <section class="benefits"><div class="wrap benefit-grid">
-      <div class="benefit"><span class="emoji">🚚</span><div><strong>Convenient Orders</strong><small>Place order online</small></div></div>
-      <div class="benefit"><span class="emoji">💵</span><div><strong>Cash on Delivery</strong><small>Pay when delivered</small></div></div>
-      <div class="benefit"><span class="emoji">🤝</span><div><strong>Friendly Support</strong><small>We're here to help</small></div></div>
-      <div class="benefit"><span class="emoji">📱</span><div><strong>Mobile Friendly</strong><small>Shop from your phone</small></div></div>
+      <div class="benefit"><span class="emoji">🚚</span><div><strong>Product Variety</strong><small>Browse popular categories</small></div></div>
+      <div class="benefit"><span class="emoji">💵</span><div><strong>Prices Shown</strong><small>Check each product</small></div></div>
+      <div class="benefit"><span class="emoji">🤝</span><div><strong>Order Enquiry</strong><small>Ask about availability</small></div></div>
+      <div class="benefit"><span class="emoji">📱</span><div><strong>Mobile Friendly</strong><small>Browse on any phone</small></div></div>
     </div></section>
     <section class="section" id="products"><div class="wrap">
-      <div class="section-head"><div><div class="kicker">Handpicked for you</div><h2>Popular Products</h2><p>Explore our featured picks. Product examples can be replaced with the store's actual inventory.</p></div><button class="iconbtn" onclick="openCart()">View Cart →</button></div>
-      <div class="category-row" id="categories"><button class="chip active" data-cat="All">All Products</button><button class="chip" data-cat="Audio">Audio</button><button class="chip" data-cat="Accessories">Accessories</button><button class="chip" data-cat="Smart Gadgets">Smart Gadgets</button></div>
+      <div class="section-head"><div><div class="kicker">Explore the collection</div><h2>Products & Categories</h2><p>Browse our featured catalogue. Product photos, names and prices will be updated when the owner shares the final list.</p></div><button class="iconbtn" onclick="openCart()">View Cart →</button></div>
+      <div class="category-row" id="categories"><button class="chip active" data-cat="All">All Products</button><button class="chip" data-cat="Toys & Gifts">Toys & Gifts</button><button class="chip" data-cat="Seasonal Lights">Seasonal Lights</button><button class="chip" data-cat="Fans & Appliances">Fans & Appliances</button><button class="chip" data-cat="Electronics">Electronics</button></div>
       <div class="product-grid" id="productGrid"></div>
-      <div class="promo"><div><h3>Need help choosing?</h3><p>Contact Smart Solutions for product details and availability.</p></div><div class="promo-badge">💬</div><a class="btn btn-light" href="#contact">Get in touch</a></div>
+      <div class="promo"><div><h3>Looking for a product?</h3><p>Send an enquiry to Smart Solutions for availability and order details.</p></div><div class="promo-badge">💬</div><a class="btn btn-light" href="#contact">Get in touch</a></div>
     </div></section>
-    <section class="section" id="about"><div class="wrap about-grid"><div class="about-card"><span class="big">⚡</span><div><strong>Technology made simple.</strong><p style="color:#5d6880;font-size:13px;margin-bottom:0">Your local destination for smart everyday essentials.</p></div></div><div class="about-copy"><div class="kicker">About our store</div><h2>Welcome to Smart Solutions</h2><p>We aim to make shopping for useful tech and accessories simple and convenient for customers in and around Kateya. Browse featured products, place a Cash on Delivery request, and our store team can follow up to confirm availability and delivery details.</p><p><strong>Note:</strong> The sample products shown here are placeholders. Add the shop's real product list, prices, phone number and delivery area before publishing.</p></div></div></section>
-    <section class="section" id="contact"><div class="wrap"><div class="section-head"><div><div class="kicker">We're happy to help</div><h2>Contact the Store</h2><p>Questions about availability, delivery or an order? Get in touch.</p></div></div>
+    <section class="section" id="about"><div class="wrap about-grid"><div class="about-card"><span class="big">⚡</span><div><strong>Trending products, made easy.</strong><p style="color:#5d6880;font-size:13px;margin-bottom:0">A simple catalogue for toys, gifting, seasonal products and more.</p></div></div><div class="about-copy"><div class="kicker">About our store</div><h2>Welcome to Smart Solutions</h2><p>Smart Solutions, Kateya offers a changing range of trending toys, gifting products, seasonal items, fans and electronics. Browse the catalogue, see listed prices and send an enquiry to confirm stock and delivery details.</p><p><strong>Note:</strong> The sample products shown here are placeholders. Add the shop's real product list, prices, phone number and delivery area before publishing.</p></div></div></section>
+    <section class="section" id="contact"><div class="wrap"><div class="section-head"><div><div class="kicker">We're happy to help</div><h2>Product & Order Enquiries</h2><p>Ask about product availability, delivery charges or placing an order.</p></div></div>
       <div class="contact-grid"><div class="contact-card"><h3>📍 Visit Smart Solutions</h3><p>Kateya, Gopalganj, Bihar, India<br>Exact shop address and opening hours to be added by the owner.</p><div class="contact-actions"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Smart+Solutions+Kateya+Gopalganj">Open Google Maps</a></div></div>
       <div class="contact-card"><h3>💬 WhatsApp & Support</h3><p>Contact details will be added after the store owner confirms the official business phone number.</p><div class="contact-actions"><button class="btn btn-dark" onclick="alert('Store WhatsApp number has not been configured yet. Add the verified business number before launch.')">WhatsApp Us</button><button class="btn btn-light" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products</button></div></div></div>
     </div></section>
@@ -85,23 +118,23 @@
 </div>
 <script>
 const DEFAULT_PRODUCTS = [
- {id:1,name:"Wireless Bluetooth Earbuds",category:"Audio",price:799,emoji:"🎧",tag:"Popular",desc:"Compact everyday audio with a clean, modern look."},
- {id:2,name:"Portable Bluetooth Speaker",category:"Audio",price:999,emoji:"🔊",tag:"Featured",desc:"Portable sound for music at home or on the go."},
- {id:3,name:"Smart Watch",category:"Smart Gadgets",price:1299,emoji:"⌚",tag:"Trending",desc:"A stylish wearable for your everyday routine."},
- {id:4,name:"Fast Charging Cable",category:"Accessories",price:199,emoji:"🔌",tag:"Value Pick",desc:"A practical charging accessory for daily use."},
- {id:5,name:"Mobile Phone Stand",category:"Accessories",price:249,emoji:"📱",tag:"Useful",desc:"Keep your phone upright on a desk or bedside."},
- {id:6,name:"Wireless Headphones",category:"Audio",price:1499,emoji:"🎵",tag:"Popular",desc:"Over-ear style for music and entertainment."},
- {id:7,name:"Power Bank",category:"Accessories",price:899,emoji:"🔋",tag:"Essential",desc:"Portable power for compatible devices."},
- {id:8,name:"Smart LED Light",category:"Smart Gadgets",price:399,emoji:"💡",tag:"Smart Pick",desc:"A simple way to add ambient light to a room."}
+ {id:1,name:"Adorable Cat Plush Backpack",category:"Toys & Gifts",price:299,emoji:"🧸",tag:"Trending",desc:"Sample listing — replace with actual product details."},
+ {id:2,name:"LED Decorative Light",category:"Seasonal Lights",price:399,emoji:"✨",tag:"Seasonal",desc:"Sample listing — replace with actual product details."},
+ {id:3,name:"Mini Portable Fan",category:"Fans & Appliances",price:499,emoji:"🌀",tag:"Popular",desc:"Sample listing — replace with actual product details."},
+ {id:4,name:"Wireless Bluetooth Speaker",category:"Electronics",price:799,emoji:"🔊",tag:"Featured",desc:"Sample listing — replace with actual product details."},
+ {id:5,name:"Kids Gift Toy Set",category:"Toys & Gifts",price:349,emoji:"🎁",tag:"Gift Pick",desc:"Sample listing — replace with actual product details."},
+ {id:6,name:"Decorative LED String Lights",category:"Seasonal Lights",price:249,emoji:"💡",tag:"Trending",desc:"Sample listing — replace with actual product details."},
+ {id:7,name:"Rechargeable Table Fan",category:"Fans & Appliances",price:999,emoji:"🌬️",tag:"Useful",desc:"Sample listing — replace with actual product details."},
+ {id:8,name:"Portable Audio Accessory",category:"Electronics",price:599,emoji:"🎧",tag:"New",desc:"Sample listing — replace with actual product details."}
 ];
 const STORE_WA_NUMBER = ""; // Add verified WhatsApp number with country code, digits only, e.g. 91XXXXXXXXXX.
 const read = (key, fallback) => { try { const v=localStorage.getItem(key); return v?JSON.parse(v):fallback; } catch(e){ return fallback; } };
-let products = read("ss_products", DEFAULT_PRODUCTS);
+let products = read("ss_products_v2", DEFAULT_PRODUCTS);
 let cart = read("ss_cart", []);
 let orders = read("ss_orders", []);
 let activeCategory = "All";
 const rupees = n => "₹" + Number(n).toLocaleString("en-IN");
-function save(){localStorage.setItem("ss_products",JSON.stringify(products));localStorage.setItem("ss_cart",JSON.stringify(cart));localStorage.setItem("ss_orders",JSON.stringify(orders));}
+function save(){localStorage.setItem("ss_products_v2",JSON.stringify(products));localStorage.setItem("ss_cart",JSON.stringify(cart));localStorage.setItem("ss_orders",JSON.stringify(orders));}
 function renderProducts(){
  const filtered=products.filter(p=>activeCategory==="All"||p.category===activeCategory);
  document.getElementById("productGrid").innerHTML=filtered.length?filtered.map(p=>`<article class="product"><div class="product-visual"><span class="tag">${esc(p.tag||"Featured")}</span>${esc(p.emoji||"📦")}</div><div class="product-body"><div class="product-cat">${esc(p.category||"Other")}</div><h3>${esc(p.name)}</h3><div class="product-desc">${esc(p.desc||"Contact store for details.")}</div><div class="product-bottom"><span class="price">${rupees(p.price)}</span><button class="add" onclick="addToCart(${Number(p.id)})">+ Add</button></div></div></article>`).join(""):`<p>No products in this category yet.</p>`;

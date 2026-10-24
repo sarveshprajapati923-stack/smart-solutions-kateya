@@ -1,17 +1,13 @@
-# Smart Solutions — Kateya
+# Smart Solutions | Kateya — Catalogue UI Preview
 
-A mobile-friendly storefront prototype for Smart Solutions, Kateya.
+This is a mobile-friendly catalogue-style website preview inspired by the reference screenshot. It includes categories, visible sample prices, cart, a COD enquiry form, and a demo admin interface.
 
-## Current prototype features
-- Responsive storefront with product cards and category filters
-- Cart quantity controls and COD checkout form
-- Demo admin area for viewing local demo orders and adding/deleting demo products
-- WhatsApp pre-filled order message hook (customer must press Send)
+## Before launch
+- Replace all sample products, prices, emoji placeholders and descriptions with the owner's real catalogue/photos.
+- Confirm official WhatsApp/business phone number and delivery details.
+- Connect Supabase database and secure authentication before accepting real orders. The current prototype stores products/cart/orders in the visitor's browser only.
+- The demo admin login is not secure and must not be used for a live store.
+- The checkout is a prototype and does not send orders to a shared database.
 
-## Important before going live
-This is a front-end prototype only. Products and orders are stored in browser `localStorage`, so they are NOT shared across devices and are not suitable for real customer orders. The demo admin login is visible in source code and is NOT secure.
-
-Before launch, connect a shared database (for example Supabase), implement Supabase Auth for admin login, enforce Row Level Security, validate checkout server-side, and configure the verified store WhatsApp number. Replace sample products/prices, exact address, contact details, and opening hours with details approved by the owner.
-
-## Preview locally
-Open `index.html` in a browser. For Vercel, import this repository as a static site; `index.html` is the entry point.
+## Deploy
+Commit the updated `index.html` to the `main` branch of the connected GitHub repository. Vercel should redeploy automatically.
