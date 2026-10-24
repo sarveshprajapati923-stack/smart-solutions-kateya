@@ -1,182 +1,1196 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101b3d">
-  <title>Smart Solutions | Kateya</title>
-  <meta name="description" content="Explore electronics and smart solutions at Smart Solutions, Kateya.">
-  <style>
-    :root{--navy:#101b3d;--navy2:#182957;--blue:#4169e1;--cyan:#dff6ff;--ink:#182033;--muted:#68738a;--line:#e7ebf2;--bg:#f5f7fb;--white:#fff;--green:#15803d;--shadow:0 14px 40px rgba(18,32,67,.09)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-    button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,92%);margin:auto}
-    .topbar{background:#0b1330;color:#dce5ff;font-size:12px;padding:9px 0}.topbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    header{background:var(--white);position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--navy);font-weight:900;font-size:19px;letter-spacing:-.4px}.brandmark{display:grid;place-items:center;width:42px;height:42px;background:linear-gradient(135deg,#4169e1,#56c8e9);color:#fff;border-radius:14px;font-size:22px;box-shadow:0 8px 18px #4169e144}
-    .navlinks{display:flex;gap:24px;align-items:center}.navlinks a{font-size:14px;text-decoration:none;color:#46516b;font-weight:650}.navlinks a:hover{color:var(--blue)}
-    .btn{border:0;border-radius:12px;padding:12px 17px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}.btn-primary{background:var(--blue);color:white;box-shadow:0 8px 20px #4169e133}.btn-primary:hover{transform:translateY(-1px);background:#3157ce}.btn-dark{background:var(--navy);color:white}.btn-light{background:#eef2ff;color:var(--navy)}.iconbtn{border:1px solid var(--line);background:white;border-radius:12px;padding:11px 13px;color:var(--navy);font-weight:800}
-    .hero{padding:54px 0 36px;background:radial-gradient(circle at 80% 20%,#d9f7ff 0,transparent 28%),linear-gradient(120deg,#f5f8ff,#eef3ff 65%,#f8fbff);overflow:hidden}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#3157ce;background:#e7edff;border:1px solid #d9e2ff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
-    h1{font-size:clamp(36px,5vw,60px);line-height:1.05;letter-spacing:-2.2px;color:var(--navy);margin:18px 0}.hero p{font-size:17px;line-height:1.7;color:#5d6880;max-width:540px;margin:0 0 25px}.hero-actions{display:flex;gap:11px;flex-wrap:wrap}.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:25px;color:#5e6981;font-size:12px;font-weight:750}.trust span{display:flex;align-items:center;gap:7px}
-    .hero-art{position:relative;min-height:330px;display:grid;place-items:center}.orb{position:absolute;width:310px;height:310px;border-radius:50%;background:linear-gradient(135deg,#c5f2ff,#dfe5ff);right:5%;top:0}.device{position:relative;width:min(360px,95%);background:linear-gradient(145deg,#182957,#0b1330);border-radius:26px;padding:22px;box-shadow:0 30px 60px #101b3d33;transform:rotate(3deg);color:#fff}.device-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#b9c8f6}.device-screen{margin-top:20px;background:linear-gradient(135deg,#314f9c,#6ad3ed);border-radius:18px;padding:24px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}.device-screen strong{font-size:27px;line-height:1.1;max-width:200px}.device-icons{display:flex;gap:10px;margin-top:18px}.device-icons span{background:#ffffff1c;border:1px solid #ffffff28;border-radius:12px;padding:10px 12px;font-size:23px}.float-card{position:absolute;background:#fff;border:1px solid #ffffffaa;box-shadow:var(--shadow);border-radius:16px;padding:13px 16px;font-size:12px;font-weight:800}.float-card b{display:block;font-size:16px;color:var(--navy);margin-bottom:3px}.fc1{left:0;bottom:35px}.fc2{right:0;top:35px}
-    .benefits{padding:22px 0}.benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.benefit{background:white;border:1px solid var(--line);border-radius:15px;padding:16px;display:flex;gap:11px;align-items:center}.benefit .emoji{font-size:23px}.benefit strong{display:block;font-size:13px}.benefit small{color:var(--muted);font-size:11px}
-    section.section{padding:38px 0}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:22px}.kicker{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);font-weight:900}.section h2{font-size:clamp(25px,3vw,35px);letter-spacing:-1px;margin:7px 0;color:var(--navy)}.section-head p{color:var(--muted);margin:0;font-size:14px}
-    .category-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}.chip{border:1px solid #dfe5f0;border-radius:999px;background:white;color:#59647b;padding:9px 14px;font-size:13px;font-weight:800}.chip.active,.chip:hover{background:var(--navy);border-color:var(--navy);color:white}
-    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s}.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.product-visual{height:155px;display:grid;place-items:center;background:linear-gradient(135deg,#edf3ff,#e7faff);font-size:64px;position:relative}.tag{position:absolute;top:12px;left:12px;background:white;color:#3157ce;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:900}.product-body{padding:15px}.product-cat{color:#758099;text-transform:uppercase;font-size:10px;letter-spacing:1px;font-weight:900}.product h3{font-size:15px;margin:7px 0 6px;color:var(--navy)}.product-desc{font-size:12px;color:var(--muted);line-height:1.5;min-height:36px}.product-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:13px;gap:8px}.price{font-size:19px;font-weight:900;color:var(--navy)}.add{border:0;border-radius:10px;background:#eaf0ff;color:#3157ce;padding:9px 11px;font-size:12px;font-weight:900}.add:hover{background:var(--blue);color:white}
-    .promo{margin:20px auto 10px;background:linear-gradient(110deg,#101b3d,#233d7e);color:white;border-radius:22px;padding:27px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden}.promo h3{font-size:25px;margin:0 0 7px}.promo p{color:#cbd6f7;margin:0;font-size:13px}.promo-badge{font-size:42px}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}.about-card{background:#e8f4ff;border-radius:22px;padding:28px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}.about-card .big{font-size:52px}.about-card strong{font-size:22px;color:var(--navy)}.about-copy p{color:var(--muted);line-height:1.8;font-size:14px}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contact-card{background:white;border:1px solid var(--line);border-radius:18px;padding:23px}.contact-card h3{margin:0 0 8px;color:var(--navy)}.contact-card p{color:var(--muted);font-size:14px;line-height:1.7}.contact-actions{display:flex;gap:10px;flex-wrap:wrap}
-    footer{background:#0b1330;color:#c8d2ef;padding:30px 0;margin-top:35px}.footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12px}.footer-row strong{color:white}
-    .overlay{position:fixed;inset:0;background:#08112bcc;z-index:30;display:none;align-items:stretch;justify-content:flex-end}.overlay.open{display:flex}.drawer{background:#fff;width:min(460px,100%);height:100%;overflow:auto;padding:23px;box-shadow:-20px 0 60px #0002}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.drawer h2{margin:0;color:var(--navy)}.close{border:0;background:#f0f3fa;border-radius:10px;padding:9px 12px;font-weight:900}.cart-row{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.cart-row small{display:block;color:var(--muted);margin-top:4px}.qty{display:flex;align-items:center;gap:7px;margin-top:7px}.qty button{border:1px solid var(--line);background:white;border-radius:6px;width:25px;height:25px}.form{display:grid;gap:12px;margin-top:20px}.form label{font-size:12px;font-weight:800;color:#59647b}.form input,.form textarea,.form select{display:block;width:100%;border:1px solid #dce2ed;border-radius:10px;padding:12px;margin-top:5px;outline:none;background:#fff}.form input:focus,.form textarea:focus{border-color:var(--blue)}.total{display:flex;justify-content:space-between;padding:18px 0;font-weight:900;color:var(--navy);font-size:18px}.notice{font-size:12px;color:#68738a;line-height:1.6;background:#f5f7fb;padding:12px;border-radius:10px}
-    .admin-area{display:none;min-height:100vh;background:#f5f7fb;padding:22px 0}.admin-area.show{display:block}.admin-layout{display:grid;grid-template-columns:230px 1fr;gap:20px}.admin-side,.admin-main{background:white;border:1px solid var(--line);border-radius:18px;padding:20px}.admin-side h2{font-size:18px;color:var(--navy)}.admin-side button{display:block;width:100%;text-align:left;border:0;background:#f4f6fb;padding:12px;border-radius:10px;margin:7px 0;color:#46516b;font-weight:800}.admin-side button.active{background:#e8eeff;color:#3157ce}.admin-main h1{font-size:29px;letter-spacing:-1px;margin:0 0 5px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:16px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;color:var(--navy);margin-top:7px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:#66718a;background:#f8f9fc}.admin-login{max-width:390px;margin:50px auto;background:white;border:1px solid var(--line);border-radius:20px;padding:26px}.admin-login h2{color:var(--navy);margin-top:0}.hidden{display:none!important}
-    @media(max-width:850px){.navlinks{display:none}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:300px}.benefit-grid{grid-template-columns:repeat(2,1fr)}.product-grid{grid-template-columns:repeat(2,1fr)}.about-grid,.contact-grid{grid-template-columns:1fr}.admin-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:480px){.topbar .wrap{justify-content:center}.nav{height:66px}.brand{font-size:16px}.brandmark{width:37px;height:37px}.nav .btn{padding:10px 11px;font-size:12px}.hero{padding-top:36px}.hero p{font-size:15px}.hero-art{min-height:270px}.orb{width:240px;height:240px}.device{padding:16px}.device-screen{min-height:145px}.float-card{padding:10px;font-size:10px}.fc1{left:-2px}.fc2{right:-2px}.benefit-grid{gap:8px}.benefit{padding:12px 9px}.benefit .emoji{font-size:19px}.product-grid{gap:10px}.product-visual{height:120px;font-size:48px}.product-body{padding:11px}.product h3{font-size:13px}.product-desc{font-size:11px}.price{font-size:16px}.add{padding:8px}.promo{padding:22px;align-items:flex-start}.promo h3{font-size:20px}.promo-badge{font-size:30px}.section-head{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:1fr}.drawer{padding:18px}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#202124">
+<title>Smart Solutions | Kateya</title>
+<meta name="description" content="Explore products at Smart Solutions, Kateya, Gopalganj, Bihar.">
 
-    /* Wholesale-catalog inspired layout */
-    body{background:#f7f7f5;color:#202124}
-    .topbar{background:#202124;color:#f5f5f5}
-    header{background:#fff}
-    .brand{color:#202124}.brandmark{background:#202124;border-radius:9px;box-shadow:none}
-    .hero{padding:35px 0 28px;background:#fff;}
-    .hero-grid{grid-template-columns:1fr .75fr;gap:20px}
-    .eyebrow{background:#fff4e7;border-color:#ffe1bd;color:#8b4c08;border-radius:5px;letter-spacing:.6px}
-    h1{color:#202124;letter-spacing:-1.3px;font-size:clamp(32px,4.6vw,52px)}
-    .hero p{color:#555;max-width:560px}
-    .btn-primary{background:#202124;box-shadow:none}.btn-primary:hover{background:#3d3d3d}
-    .btn-light{background:#f3f3f3;color:#202124}
-    .hero-art{min-height:250px;background:linear-gradient(135deg,#fff0db,#fce8ef 48%,#e6f5ff);border-radius:14px;overflow:hidden}
-    .orb{width:210px;height:210px;background:linear-gradient(135deg,#ffd9a8,#ffc5d8);right:18%;top:15%}
-    .device{width:min(290px,90%);padding:17px;border-radius:18px;background:linear-gradient(145deg,#333,#111);transform:rotate(0deg)}
-    .device-screen{background:linear-gradient(135deg,#e9a23b,#ed759d);min-height:135px;padding:18px}
-    .device-screen strong{font-size:24px}.device-icons span{background:#ffffff28}
-    .float-card{border-radius:10px}.fc1{left:10px;bottom:15px}.fc2{right:10px;top:15px}
-    .benefits{padding:16px 0}.benefit{border-radius:10px;box-shadow:none}.benefit-grid{gap:10px}
-    section.section{padding:30px 0}.section h2{color:#202124}.kicker{color:#a05b11}
-    .category-row{gap:8px}.chip{border-radius:7px;color:#444}.chip.active,.chip:hover{background:#202124;border-color:#202124}
-    .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
-    .product{border-radius:11px;box-shadow:0 2px 8px #00000008}.product:hover{transform:translateY(-3px);box-shadow:0 8px 22px #00000012}
-    .product-visual{height:180px;background:linear-gradient(135deg,#fff2e5,#fce8ef);font-size:70px}
-    .product:nth-child(4n+2) .product-visual{background:linear-gradient(135deg,#e5f5ff,#e6e8ff)}
-    .product:nth-child(4n+3) .product-visual{background:linear-gradient(135deg,#e9f8e8,#fff4d9)}
-    .product:nth-child(4n+4) .product-visual{background:linear-gradient(135deg,#f4e9ff,#e7f8ff)}
-    .tag{border-radius:5px;color:#222;background:#fff}.product h3{color:#202124}.price{color:#202124}.add{border-radius:7px;background:#f1f1f1;color:#222}
-    .promo{background:#242424;border-radius:12px}.about-card{background:#fff0db;border-radius:12px}.contact-card{border-radius:12px}
-    footer{background:#202124}
-    @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-art{min-height:250px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-visual{height:145px}}
-    @media(max-width:480px){.hero{padding-top:28px}.hero-art{min-height:220px}.product-grid{gap:10px}.product-visual{height:125px;font-size:50px}.product-body{padding:10px}.product h3{font-size:13px}.product-desc{min-height:30px}}
-  </style>
+<style>
+:root{
+  --dark:#202124;
+  --dark2:#303134;
+  --accent:#4169e1;
+  --bg:#f7f7f5;
+  --white:#fff;
+  --muted:#68738a;
+  --line:#e7e9ee;
+  --green:#15803d;
+  --shadow:0 8px 25px #0000000d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+}
+button,input,textarea,select{font:inherit}
+button,a{cursor:pointer}
+a{text-decoration:none}
+.wrap{width:min(1160px,92%);margin:auto}
+.hidden{display:none!important}
+
+.topbar{
+  background:#171717;color:#eee;
+  padding:10px 0;font-size:12px
+}
+.topbar .wrap{
+  display:flex;justify-content:space-between;
+  gap:10px;flex-wrap:wrap
+}
+
+header{
+  background:#fff;position:sticky;top:0;
+  z-index:10;border-bottom:1px solid var(--line)
+}
+.nav{
+  min-height:72px;display:flex;
+  align-items:center;justify-content:space-between;gap:15px
+}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  color:var(--dark);font-size:17px;font-weight:900
+}
+.brandmark{
+  display:grid;place-items:center;
+  background:var(--dark);color:white;
+  width:42px;height:42px;border-radius:10px;font-size:23px
+}
+.brand small{
+  display:block;font-size:10px;letter-spacing:3px;
+  color:#777;margin-top:3px
+}
+.navlinks{display:flex;gap:22px}
+.navlinks a{font-size:13px;color:#444;font-weight:700}
+.navlinks a:hover{color:var(--accent)}
+
+.btn{
+  display:inline-flex;align-items:center;
+  justify-content:center;gap:7px;
+  border:0;border-radius:9px;
+  padding:12px 16px;font-weight:800;
+  font-size:13px
+}
+.btn-primary{background:var(--dark);color:white}
+.btn-primary:hover{background:#444}
+.btn-light{background:#f0f1f4;color:var(--dark)}
+.btn-blue{background:var(--accent);color:white}
+.btn-danger{background:#fff0f0;color:#b42318}
+.iconbtn{
+  background:#fff;border:1px solid var(--line);
+  border-radius:9px;padding:10px 12px;font-weight:700
+}
+
+.hero{
+  padding:45px 0 35px;
+  background:linear-gradient(120deg,#fff,#fff6ed 60%,#edf5ff)
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:30px;align-items:center
+}
+.eyebrow{
+  display:inline-block;background:#fff0df;
+  border:1px solid #f6dfc5;color:#92520b;
+  padding:8px 12px;border-radius:5px;
+  font-size:11px;font-weight:900;letter-spacing:.7px
+}
+h1{
+  font-size:clamp(34px,5vw,56px);
+  line-height:1.08;letter-spacing:-1.7px;
+  margin:18px 0;color:var(--dark)
+}
+.hero p{
+  max-width:560px;font-size:15px;
+  line-height:1.8;color:#626262
+}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.trust{
+  display:flex;gap:15px;flex-wrap:wrap;
+  margin-top:23px;font-size:12px;
+  font-weight:700;color:#626262
+}
+.hero-art{
+  min-height:280px;border-radius:16px;
+  background:linear-gradient(135deg,#ffe5c2,#f8dce8,#dcefff);
+  display:grid;place-items:center;padding:25px;
+  position:relative;overflow:hidden
+}
+.hero-card{
+  width:min(330px,100%);background:#202124;
+  color:white;padding:25px;border-radius:18px;
+  box-shadow:0 25px 45px #0002
+}
+.hero-card small{color:#cbd5e1;letter-spacing:2px}
+.hero-card h2{font-size:29px;line-height:1.2;margin:22px 0}
+.hero-icons{display:flex;gap:10px;font-size:27px}
+.hero-icons span{
+  background:#ffffff1b;border-radius:10px;
+  padding:10px
+}
+
+.benefits{padding:20px 0}
+.benefit-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px
+}
+.benefit{
+  display:flex;align-items:center;gap:11px;
+  padding:17px;background:white;
+  border:1px solid var(--line);border-radius:11px
+}
+.benefit .emoji{font-size:24px}
+.benefit strong{display:block;font-size:13px}
+.benefit small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+
+section.section{padding:35px 0}
+.section-head{
+  display:flex;justify-content:space-between;
+  align-items:end;gap:15px;margin-bottom:23px
+}
+.kicker{
+  font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;color:#a05b11;font-weight:900
+}
+.section h2{font-size:clamp(25px,3vw,34px);margin:8px 0;color:var(--dark)}
+.section-head p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+
+.searchbar{display:flex;gap:10px;margin-bottom:17px}
+.searchbar input{
+  min-width:0;flex:1;border:1px solid #ddd;
+  border-radius:9px;padding:12px;background:white
+}
+.category-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{
+  border:1px solid #e1e3e8;background:white;
+  border-radius:7px;padding:9px 13px;
+  color:#444;font-size:12px;font-weight:800
+}
+.chip.active,.chip:hover{background:var(--dark);color:white;border-color:var(--dark)}
+
+.product-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px
+}
+.product{
+  background:white;border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;
+  transition:.2s;min-width:0
+}
+.product:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.product-visual{
+  height:175px;background:linear-gradient(135deg,#fff1e2,#e9f2ff);
+  display:grid;place-items:center;overflow:hidden;
+  position:relative;font-size:55px
+}
+.product-visual img{width:100%;height:100%;object-fit:cover}
+.product-body{padding:13px}
+.product-cat{
+  color:#777;text-transform:uppercase;
+  font-size:10px;letter-spacing:.8px;font-weight:900
+}
+.product h3{font-size:14px;line-height:1.45;margin:8px 0}
+.product-desc{
+  color:var(--muted);font-size:12px;
+  line-height:1.6;overflow-wrap:anywhere
+}
+.product-bottom{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:7px;margin-top:14px
+}
+.price{font-size:18px;font-weight:900}
+.add{
+  border:0;background:#f0f1f4;color:#222;
+  padding:9px 11px;border-radius:7px;
+  font-size:12px;font-weight:900
+}
+.add:hover{background:var(--accent);color:white}
+.empty-state{
+  grid-column:1/-1;text-align:center;
+  background:#fff;border:1px dashed #d9dce4;
+  padding:35px 18px;border-radius:12px
+}
+.empty-state .empty-icon{font-size:40px}
+.empty-state h3{margin:12px 0 8px}
+.empty-state p{font-size:13px;color:var(--muted);line-height:1.7}
+
+.promo{
+  margin:25px auto 5px;background:#242424;
+  color:white;border-radius:12px;padding:25px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px
+}
+.promo h3{font-size:21px;margin:0 0 8px}
+.promo p{font-size:13px;color:#ddd;line-height:1.6;margin:0}
+.promo-icon{font-size:35px}
+
+.about-grid,.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px
+}
+.about-card{
+  padding:28px;border-radius:13px;
+  background:linear-gradient(135deg,#fff0db,#eaf3ff);
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:230px
+}
+.about-card .big{font-size:48px}
+.about-card strong{font-size:22px}
+.about-copy p,.contact-card p{
+  color:var(--muted);font-size:14px;line-height:1.8
+}
+.contact-card{
+  background:white;border:1px solid var(--line);
+  border-radius:12px;padding:23px
+}
+.contact-card h3{margin-top:0}
+.contact-actions{display:flex;gap:9px;flex-wrap:wrap}
+
+footer{
+  background:#171717;color:#ccc;
+  padding:28px 0;margin-top:30px
+}
+.footer-row{
+  display:flex;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;font-size:12px;line-height:1.8
+}
+.footer-row strong{color:white}
+
+.overlay{
+  position:fixed;inset:0;background:#0009;
+  z-index:30;display:none;justify-content:flex-end
+}
+.overlay.open{display:flex}
+.drawer{
+  background:white;width:min(460px,100%);
+  height:100%;overflow:auto;padding:22px
+}
+.drawer-head{
+  display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:20px
+}
+.drawer-head h2{margin:0}
+.close{
+  border:0;background:#f0f1f4;
+  padding:9px 12px;border-radius:8px
+}
+.cart-row{
+  display:flex;justify-content:space-between;
+  gap:12px;padding:13px 0;border-bottom:1px solid var(--line);
+  font-size:13px
+}
+.cart-row small{display:block;color:var(--muted);margin-top:5px}
+.qty{display:flex;align-items:center;gap:9px;margin-top:8px}
+.qty button{
+  background:white;border:1px solid var(--line);
+  border-radius:5px;width:26px;height:26px
+}
+.total{
+  display:flex;justify-content:space-between;
+  padding:18px 0;font-size:18px;font-weight:900
+}
+.form{display:grid;gap:13px;margin-top:18px}
+.form label{font-size:12px;font-weight:800;color:#525866}
+.form input,.form textarea,.form select{
+  display:block;width:100%;margin-top:6px;
+  border:1px solid #dce0e7;border-radius:8px;
+  padding:12px;background:white
+}
+.form input:focus,.form textarea:focus,.form select:focus{outline:1px solid var(--accent)}
+.notice{
+  padding:12px;background:#f4f5f7;
+  border-radius:8px;color:#626b7b;
+  font-size:12px;line-height:1.7
+}
+
+.admin-area{display:none;min-height:100vh;padding:25px 0}
+.admin-area.show{display:block}
+.admin-login{
+  max-width:410px;margin:35px auto;
+  background:white;border:1px solid var(--line);
+  border-radius:15px;padding:25px
+}
+.admin-login h2{margin-top:0}
+.admin-layout{display:grid;grid-template-columns:220px 1fr;gap:18px}
+.admin-side,.admin-main{
+  background:white;border:1px solid var(--line);
+  border-radius:14px;padding:20px;min-width:0
+}
+.admin-side h2{font-size:18px}
+.admin-side button{
+  display:block;width:100%;text-align:left;
+  border:0;background:#f5f6f8;padding:12px;
+  border-radius:8px;margin:7px 0;font-weight:800
+}
+.admin-side button.active{background:#e9edff;color:#3157ce}
+.admin-main h1{font-size:28px;margin:0 0 8px;letter-spacing:-.5px}
+.admin-main>p{font-size:13px;color:var(--muted);line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.stat{border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:23px;margin-top:8px;overflow-wrap:anywhere}
+.table-wrap{overflow-x:auto;margin-top:20px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:#f6f7f9;color:#596273}
+.admin-product-image{width:38px;height:38px;object-fit:cover;border-radius:5px;vertical-align:middle}
+.admin-label{display:block;font-size:12px;font-weight:800;margin-top:14px}
+.admin-label input,.admin-label select,.admin-label textarea{
+  display:block;width:100%;padding:11px;
+  margin-top:6px;border:1px solid #dce0e7;border-radius:8px
+}
+.admin-form{max-width:600px}
+.admin-form .btn{margin-top:16px}
+.status-select{padding:7px;border:1px solid #ddd;border-radius:6px}
+
+@media(max-width:850px){
+  .navlinks{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{min-height:240px}
+  .benefit-grid{grid-template-columns:repeat(2,1fr)}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .admin-layout{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .topbar .wrap{justify-content:center;text-align:center}
+  .nav{min-height:63px}
+  .brand{font-size:14px;gap:7px}
+  .brandmark{width:35px;height:35px}
+  .nav .btn{padding:10px;font-size:11px}
+  .hero{padding:32px 0}
+  h1{font-size:36px}
+  .hero p{font-size:14px}
+  .hero-art{min-height:220px;padding:18px}
+  .hero-card{padding:20px}
+  .hero-card h2{font-size:25px}
+  .benefit-grid{gap:8px}
+  .benefit{padding:12px 9px;gap:7px}
+  .benefit .emoji{font-size:19px}
+  .benefit strong{font-size:11px}
+  .benefit small{font-size:10px}
+  section.section{padding:27px 0}
+  .product-grid{gap:9px}
+  .product-visual{height:125px;font-size:42px}
+  .product-body{padding:10px}
+  .product h3{font-size:13px}
+  .product-desc{font-size:11px}
+  .price{font-size:16px}
+  .add{padding:8px}
+  .promo{padding:18px;flex-wrap:wrap}
+  .promo h3{font-size:19px}
+  .section-head{align-items:flex-start;flex-direction:column}
+  .stats{grid-template-columns:1fr}
+  .drawer{padding:17px}
+  .admin-side,.admin-main{padding:15px}
+}
+</style>
 </head>
+
 <body>
+
 <div id="storefront">
-  <div class="topbar"><div class="wrap"><span>Wholesale products, trending gifts & seasonal finds</span><span>📍 Kateya, Gopalganj, Bihar</span></div></div>
-  <header><div class="wrap nav">
-    <a class="brand" href="#"><span class="brandmark">S</span><span>SMART <span style="color:#4169e1">SOLUTIONS</span><small style="display:block;font-size:10px;letter-spacing:2px;color:#7a8498;margin-top:2px">KATEYA</small></span></a>
-    <nav class="navlinks"><a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-    <button class="btn btn-primary" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
-  </div></header>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span>Discover products at Smart Solutions</span>
+      <span>📍 Kateya, Gopalganj, Bihar</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home">
+        <span class="brandmark">S</span>
+        <span>SMART <span style="color:#4169e1">SOLUTIONS</span>
+          <small>KATEYA</small>
+        </span>
+      </a>
+
+      <nav class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="btn btn-primary" onclick="openCart()">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
   <main>
-    <section class="hero" id="home"><div class="wrap hero-grid">
-      <div><span class="eyebrow">TRENDING • GIFTING • SEASONAL PRODUCTS</span><h1>Discover Products<br><span style="color:#4169e1">That Everyone Loves.</span></h1>
-        <p>Explore trending toys, gifting items, seasonal lights, fans and everyday products from Smart Solutions, Kateya. Browse the catalogue, check prices and send an order enquiry easily.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="#products">Browse Catalogue →</a><a class="btn btn-light" href="#contact">Order Enquiry</a></div>
-        <div class="trust"><span>✓ Prices shown clearly</span><span>✓ Easy product browsing</span><span>✓ WhatsApp enquiries</span></div>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">SMART SHOPPING · LOCAL SERVICE</span>
+          <h1>Discover Products<br><span style="color:#4169e1">That You Will Love.</span></h1>
+
+          <p>
+            Welcome to Smart Solutions, Kateya. Explore our available products,
+            check prices and contact us for product availability and order details.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">Browse Products →</a>
+            <a class="btn btn-light" href="#contact">Contact Us</a>
+          </div>
+
+          <div class="trust">
+            <span>✓ Browse products</span>
+            <span>✓ Clear prices</span>
+            <span>✓ Easy enquiries</span>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="hero-card">
+            <small>SMART SOLUTIONS · KATEYA</small>
+            <h2>Your local destination for useful products.</h2>
+            <div class="hero-icons">
+              <span>🧸</span><span>🎁</span><span>💡</span><span>📱</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-art"><div class="orb"></div><div class="device"><div class="device-top"><span>PRODUCT CATALOGUE</span><span>● ● ●</span></div><div class="device-screen"><span style="font-size:11px;letter-spacing:2px">TRENDING COLLECTION</span><strong>Find your next best-seller.</strong><span style="font-size:12px">Browse • Add to cart • Enquire</span></div><div class="device-icons"><span>🧸</span><span>🎁</span><span>💡</span><span>🌀</span></div></div><div class="float-card fc1"><b>Product Catalogue</b>Prices displayed</div><div class="float-card fc2"><b>Easy Enquiry</b>Order via WhatsApp</div></div>
-    </div></section>
-    <section class="benefits"><div class="wrap benefit-grid">
-      <div class="benefit"><span class="emoji">🚚</span><div><strong>Product Variety</strong><small>Browse popular categories</small></div></div>
-      <div class="benefit"><span class="emoji">💵</span><div><strong>Prices Shown</strong><small>Check each product</small></div></div>
-      <div class="benefit"><span class="emoji">🤝</span><div><strong>Order Enquiry</strong><small>Ask about availability</small></div></div>
-      <div class="benefit"><span class="emoji">📱</span><div><strong>Mobile Friendly</strong><small>Browse on any phone</small></div></div>
-    </div></section>
-    <section class="section" id="products"><div class="wrap">
-      <div class="section-head"><div><div class="kicker">Explore the collection</div><h2>Products & Categories</h2><p>Browse our featured catalogue. Product photos, names and prices will be updated when the owner shares the final list.</p></div><button class="iconbtn" onclick="openCart()">View Cart →</button></div>
-      <div class="category-row" id="categories"><button class="chip active" data-cat="All">All Products</button><button class="chip" data-cat="Toys & Gifts">Toys & Gifts</button><button class="chip" data-cat="Seasonal Lights">Seasonal Lights</button><button class="chip" data-cat="Fans & Appliances">Fans & Appliances</button><button class="chip" data-cat="Electronics">Electronics</button></div>
-      <div class="product-grid" id="productGrid"></div>
-      <div class="promo"><div><h3>Looking for a product?</h3><p>Send an enquiry to Smart Solutions for availability and order details.</p></div><div class="promo-badge">💬</div><a class="btn btn-light" href="#contact">Get in touch</a></div>
-    </div></section>
-    <section class="section" id="about"><div class="wrap about-grid"><div class="about-card"><span class="big">⚡</span><div><strong>Trending products, made easy.</strong><p style="color:#5d6880;font-size:13px;margin-bottom:0">A simple catalogue for toys, gifting, seasonal products and more.</p></div></div><div class="about-copy"><div class="kicker">About our store</div><h2>Welcome to Smart Solutions</h2><p>Smart Solutions, Kateya offers a changing range of trending toys, gifting products, seasonal items, fans and electronics. Browse the catalogue, see listed prices and send an enquiry to confirm stock and delivery details.</p><p><strong>Note:</strong> The sample products shown here are placeholders. Add the shop's real product list, prices, phone number and delivery area before publishing.</p></div></div></section>
-    <section class="section" id="contact"><div class="wrap"><div class="section-head"><div><div class="kicker">We're happy to help</div><h2>Product & Order Enquiries</h2><p>Ask about product availability, delivery charges or placing an order.</p></div></div>
-      <div class="contact-grid"><div class="contact-card"><h3>📍 Visit Smart Solutions</h3><p>Kateya, Gopalganj, Bihar, India<br>Exact shop address and opening hours to be added by the owner.</p><div class="contact-actions"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Smart+Solutions+Kateya+Gopalganj">Open Google Maps</a></div></div>
-      <div class="contact-card"><h3>💬 WhatsApp & Support</h3><p>Contact details will be added after the store owner confirms the official business phone number.</p><div class="contact-actions"><button class="btn btn-dark" onclick="alert('Store WhatsApp number has not been configured yet. Add the verified business number before launch.')">WhatsApp Us</button><button class="btn btn-light" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products</button></div></div></div>
-    </div></section>
+    </section>
+
+    <section class="benefits">
+      <div class="wrap benefit-grid">
+        <div class="benefit">
+          <span class="emoji">🛍️</span>
+          <div><strong>Product Variety</strong><small>Explore available items</small></div>
+        </div>
+        <div class="benefit">
+          <span class="emoji">💵</span>
+          <div><strong>Clear Prices</strong><small>Check listed prices</small></div>
+        </div>
+        <div class="benefit">
+          <span class="emoji">🤝</span>
+          <div><strong>Customer Support</strong><small>Ask before ordering</small></div>
+        </div>
+        <div class="benefit">
+          <span class="emoji">📱</span>
+          <div><strong>Mobile Friendly</strong><small>Browse on your phone</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Our catalogue</div>
+            <h2>Products & Categories</h2>
+            <p>Explore the products currently listed by Smart Solutions.</p>
+          </div>
+          <button class="iconbtn" onclick="openCart()">View Cart →</button>
+        </div>
+
+        <div class="searchbar">
+          <input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products">
+        </div>
+
+        <div class="category-row" id="categories">
+          <button class="chip active" data-cat="All">All Products</button>
+          <button class="chip" data-cat="Toys & Gifts">Toys & Gifts</button>
+          <button class="chip" data-cat="Seasonal Lights">Seasonal Lights</button>
+          <button class="chip" data-cat="Fans & Appliances">Fans & Appliances</button>
+          <button class="chip" data-cat="Electronics">Electronics</button>
+          <button class="chip" data-cat="Other">Other</button>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="promo">
+          <div>
+            <h3>Looking for a product?</h3>
+            <p>Contact Smart Solutions to ask about availability and order details.</p>
+          </div>
+          <div class="promo-icon">💬</div>
+          <a class="btn btn-light" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-card">
+          <span class="big">⚡</span>
+          <div>
+            <strong>Smart choices. Better living.</strong>
+            <p style="color:#626262;font-size:13px;line-height:1.7">
+              Explore products and contact our store for assistance.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <div class="kicker">About our store</div>
+          <h2>Welcome to Smart Solutions</h2>
+          <p>
+            Smart Solutions is based in Kateya, Gopalganj, Bihar.
+            This website helps customers explore listed products and contact
+            the store for product information.
+          </p>
+          <p>
+            Product availability, prices and delivery details should be confirmed
+            with the store before placing an order.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">We're happy to help</div>
+            <h2>Contact Smart Solutions</h2>
+            <p>Ask about products, prices and availability.</p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>📍 Visit Our Store</h3>
+            <p>Kateya, Gopalganj, Bihar, India.</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" target="_blank" rel="noopener"
+                href="https://www.google.com/maps/search/?api=1&query=Smart+Solutions+Kateya+Gopalganj">
+                Open Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3>💬 WhatsApp & Support</h3>
+            <p id="contactMessage">
+              Contact information will be updated after the store owner confirms
+              the official business number.
+            </p>
+            <div class="contact-actions">
+              <button class="btn btn-primary" onclick="contactWhatsApp()">WhatsApp Us</button>
+              <a class="btn btn-light" href="#products">Browse Products</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer><div class="wrap footer-row"><div><strong>SMART SOLUTIONS · KATEYA</strong><br><span>Smart choices. Better living.</span></div><div>© <span id="year"></span> Smart Solutions. All rights reserved.</div><div><a href="#home" style="color:#c8d2ef">Back to top ↑</a> · <a href="#admin" onclick="showAdminLogin(event)" style="color:#c8d2ef">Admin</a></div></div></footer>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>
+        <strong>SMART SOLUTIONS · KATEYA</strong><br>
+        Smart choices. Better living.
+      </div>
+      <div>© <span id="year"></span> Smart Solutions. All rights reserved.</div>
+      <div>
+        <a href="#home" style="color:#ddd">Back to top ↑</a>
+        ·
+        <a href="#admin" onclick="showAdminLogin(event)" style="color:#ddd">Admin</a>
+      </div>
+    </div>
+  </footer>
 </div>
 
-<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your Cart</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="total"><span>Total</span><span id="cartTotal">₹0</span></div>
-  <div class="notice">Payment method: Cash on Delivery (COD). This demo saves orders only in this browser. Connect the secure database before accepting real customer orders.</div>
-  <form class="form" id="checkoutForm"><label>Full Name<input name="name" required maxlength="80" placeholder="Customer name"></label><label>Mobile Number<input name="phone" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number"></label><label>Delivery Address<textarea name="address" required maxlength="350" rows="3" placeholder="House, street, village/town, PIN code"></textarea></label><button class="btn btn-primary" type="submit">Place COD Order</button></form>
-  <p style="font-size:11px;color:#778198;line-height:1.6">After placing the demo order, WhatsApp will open with a pre-filled message if the store number is configured. The customer must press Send.</p>
-</aside></div>
+<!-- CART -->
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()">
+  <aside class="drawer">
+    <div class="drawer-head">
+      <h2>Your Cart</h2>
+      <button class="close" onclick="closeCart()">✕</button>
+    </div>
 
+    <div id="cartItems"></div>
+
+    <div class="total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+
+    <div class="notice">
+      Checkout is currently a front-end prototype. Orders are not saved to a
+      shared database. Do not rely on this form for real customer orders until
+      the secure database setup is complete.
+    </div>
+
+    <form class="form" id="checkoutForm">
+      <label>Full Name
+        <input name="name" required maxlength="80" placeholder="Customer name">
+      </label>
+
+      <label>Mobile Number
+        <input name="phone" required inputmode="numeric"
+          pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number">
+      </label>
+
+      <label>Delivery Address
+        <textarea name="address" required maxlength="350" rows="3"
+          placeholder="House, village/town, PIN code"></textarea>
+      </label>
+
+      <button class="btn btn-primary" type="submit">Continue Order</button>
+    </form>
+  </aside>
+</div>
+
+<!-- ADMIN -->
 <div class="admin-area" id="adminArea">
   <div class="wrap">
-    <div id="adminLogin" class="admin-login"><a href="#" onclick="hideAdmin(event)" style="font-size:12px;color:#4169e1">← Back to store</a><h2>Admin Login</h2><p style="color:#68738a;font-size:13px">Prototype access only. Do not use this demo login for a live store.</p><form class="form" id="loginForm"><label>Username<input name="username" required autocomplete="username"></label><label>Password<input name="password" type="password" required autocomplete="current-password"></label><button class="btn btn-primary">Sign in</button></form><p style="font-size:11px;color:#778198">Demo login: admin / demo123 (replace with secure Supabase authentication before launch).</p></div>
-    <div id="adminDashboard" class="admin-layout hidden"><aside class="admin-side"><h2>⚡ Smart Admin</h2><p style="font-size:12px;color:#68738a">Smart Solutions · Kateya</p><button class="active" onclick="adminTab('orders',this)">📦 Orders</button><button onclick="adminTab('products',this)">🛍️ Products</button><button onclick="adminTab('settings',this)">⚙️ Setup notes</button><button onclick="adminLogout()">↩ Log out</button></aside><div class="admin-main"><div id="adminContent"></div></div></div>
+
+    <div id="adminLogin" class="admin-login">
+      <a href="#" onclick="hideAdmin(event)" style="font-size:12px;color:#4169e1">← Back to store</a>
+      <h2>Admin Login</h2>
+      <p style="font-size:13px;color:#68738a;line-height:1.7">
+        Temporary prototype login. This is not secure authentication and must
+        be replaced before the website is used as a real business system.
+      </p>
+
+      <form class="form" id="loginForm">
+        <label>Username
+          <input name="username" required autocomplete="username">
+        </label>
+        <label>Password
+          <input name="password" type="password" required autocomplete="current-password">
+        </label>
+        <button class="btn btn-primary" type="submit">Sign in</button>
+      </form>
+
+      <p style="font-size:12px;color:#777">
+        Temporary demo access: admin / demo123
+      </p>
+    </div>
+
+    <div id="adminDashboard" class="admin-layout hidden">
+      <aside class="admin-side">
+        <h2>⚡ Smart Admin</h2>
+        <p style="font-size:12px;color:#68738a">Smart Solutions · Kateya</p>
+        <button class="active" onclick="adminTab('products',this)">🛍️ Products</button>
+        <button onclick="adminTab('orders',this)">📦 Orders</button>
+        <button onclick="adminTab('settings',this)">⚙️ Setup Notes</button>
+        <button onclick="adminLogout()">↩ Log out</button>
+      </aside>
+
+      <div class="admin-main">
+        <div id="adminContent"></div>
+      </div>
+    </div>
+
   </div>
 </div>
+
 <script>
-const DEFAULT_PRODUCTS = [
- {id:1,name:"Adorable Cat Plush Backpack",category:"Toys & Gifts",price:299,emoji:"🧸",tag:"Trending",desc:"Sample listing — replace with actual product details."},
- {id:2,name:"LED Decorative Light",category:"Seasonal Lights",price:399,emoji:"✨",tag:"Seasonal",desc:"Sample listing — replace with actual product details."},
- {id:3,name:"Mini Portable Fan",category:"Fans & Appliances",price:499,emoji:"🌀",tag:"Popular",desc:"Sample listing — replace with actual product details."},
- {id:4,name:"Wireless Bluetooth Speaker",category:"Electronics",price:799,emoji:"🔊",tag:"Featured",desc:"Sample listing — replace with actual product details."},
- {id:5,name:"Kids Gift Toy Set",category:"Toys & Gifts",price:349,emoji:"🎁",tag:"Gift Pick",desc:"Sample listing — replace with actual product details."},
- {id:6,name:"Decorative LED String Lights",category:"Seasonal Lights",price:249,emoji:"💡",tag:"Trending",desc:"Sample listing — replace with actual product details."},
- {id:7,name:"Rechargeable Table Fan",category:"Fans & Appliances",price:999,emoji:"🌬️",tag:"Useful",desc:"Sample listing — replace with actual product details."},
- {id:8,name:"Portable Audio Accessory",category:"Electronics",price:599,emoji:"🎧",tag:"New",desc:"Sample listing — replace with actual product details."}
+/*
+  IMPORTANT:
+  This is a front-end prototype.
+  localStorage data is stored in this browser only.
+  Replace the temporary login and localStorage with Supabase Auth,
+  database tables and Row Level Security before production use.
+*/
+
+const STORE_WA_NUMBER = ""; // Add verified business number with country code, digits only.
+
+const CATEGORIES = [
+  "Toys & Gifts",
+  "Seasonal Lights",
+  "Fans & Appliances",
+  "Electronics",
+  "Other"
 ];
-const STORE_WA_NUMBER = ""; // Add verified WhatsApp number with country code, digits only, e.g. 91XXXXXXXXXX.
-const read = (key, fallback) => { try { const v=localStorage.getItem(key); return v?JSON.parse(v):fallback; } catch(e){ return fallback; } };
-let products = read("ss_products_v2", DEFAULT_PRODUCTS);
-let cart = read("ss_cart", []);
-let orders = read("ss_orders", []);
+
+function read(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function save() {
+  localStorage.setItem("ss_products_v3", JSON.stringify(products));
+  localStorage.setItem("ss_cart_v3", JSON.stringify(cart));
+  localStorage.setItem("ss_orders_v3", JSON.stringify(orders));
+}
+
+let products = read("ss_products_v3", []);
+let cart = read("ss_cart_v3", []);
+let orders = read("ss_orders_v3", []);
 let activeCategory = "All";
-const rupees = n => "₹" + Number(n).toLocaleString("en-IN");
-function save(){localStorage.setItem("ss_products_v2",JSON.stringify(products));localStorage.setItem("ss_cart",JSON.stringify(cart));localStorage.setItem("ss_orders",JSON.stringify(orders));}
-function renderProducts(){
- const filtered=products.filter(p=>activeCategory==="All"||p.category===activeCategory);
- document.getElementById("productGrid").innerHTML=filtered.length?filtered.map(p=>`<article class="product"><div class="product-visual"><span class="tag">${esc(p.tag||"Featured")}</span>${esc(p.emoji||"📦")}</div><div class="product-body"><div class="product-cat">${esc(p.category||"Other")}</div><h3>${esc(p.name)}</h3><div class="product-desc">${esc(p.desc||"Contact store for details.")}</div><div class="product-bottom"><span class="price">${rupees(p.price)}</span><button class="add" onclick="addToCart(${Number(p.id)})">+ Add</button></div></div></article>`).join(""):`<p>No products in this category yet.</p>`;
- document.querySelectorAll(".chip").forEach(b=>b.classList.toggle("active",b.dataset.cat===activeCategory));
+let searchText = "";
+
+const rupees = value =>
+  "₹" + Number(value || 0).toLocaleString("en-IN");
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
 }
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function addToCart(id){const p=products.find(x=>x.id===id);if(!p)return;let row=cart.find(x=>x.id===id);if(row)row.qty++;else cart.push({id:p.id,qty:1});save();updateCartCount();renderCart();}
-function updateCartCount(){document.getElementById("cartCount").textContent=cart.reduce((n,x)=>n+x.qty,0);}
-function openCart(){document.getElementById("cartOverlay").classList.add("open");renderCart();}
-function closeCart(){document.getElementById("cartOverlay").classList.remove("open");}
-function renderCart(){
- const target=document.getElementById("cartItems");
- if(!cart.length){target.innerHTML='<p style="color:#68738a;font-size:14px;padding:20px 0">Your cart is empty. Add a product to get started.</p>';document.getElementById("cartTotal").textContent="₹0";return;}
- target.innerHTML=cart.map(row=>{const p=products.find(x=>x.id===row.id);if(!p)return "";return `<div class="cart-row"><div><strong>${esc(p.name)}</strong><small>${rupees(p.price)} each</small><div class="qty"><button type="button" onclick="changeQty(${p.id},-1)">−</button><span>${row.qty}</span><button type="button" onclick="changeQty(${p.id},1)">+</button></div></div><strong>${rupees(p.price*row.qty)}</strong></div>`}).join("");
- document.getElementById("cartTotal").textContent=rupees(cart.reduce((sum,row)=>{const p=products.find(x=>x.id===row.id);return sum+(p?p.price*row.qty:0)},0));
+
+function validImage(url) {
+  if (!url) return "";
+  try {
+    const parsed = new URL(url);
+    return ["https:", "http:"].includes(parsed.protocol) ? parsed.href : "";
+  } catch {
+    return "";
+  }
 }
-function changeQty(id,delta){let row=cart.find(x=>x.id===id);if(!row)return;row.qty+=delta;if(row.qty<=0)cart=cart.filter(x=>x.id!==id);save();updateCartCount();renderCart();}
-document.getElementById("checkoutForm").addEventListener("submit",e=>{
- e.preventDefault();if(!cart.length){alert("Your cart is empty.");return;}
- const fd=new FormData(e.target);const items=cart.map(row=>{const p=products.find(x=>x.id===row.id);return {id:row.id,name:p?.name||"Product",price:p?.price||0,qty:row.qty};});
- const total=items.reduce((n,x)=>n+x.price*x.qty,0);
- const order={id:"SS"+Date.now().toString().slice(-8),name:fd.get("name").trim(),phone:fd.get("phone").trim(),address:fd.get("address").trim(),items,total,status:"Pending",payment:"COD",createdAt:new Date().toISOString()};
- orders.unshift(order);save();cart=[];save();updateCartCount();renderCart();e.target.reset();closeCart();
- alert("Demo order created: "+order.id+"\\nFor a live website, orders must be saved to a secure shared database.");
- const msg=`Hello Smart Solutions, I want to confirm my COD order.\\nOrder: ${order.id}\\nName: ${order.name}\\nMobile: ${order.phone}\\nAddress: ${order.address}\\nItems: ${items.map(x=>x.name+" x"+x.qty).join(", ")}\\nTotal: ${rupees(total)}`;
- if(STORE_WA_NUMBER){window.open("https://wa.me/"+STORE_WA_NUMBER+"?text="+encodeURIComponent(msg),"_blank","noopener");}
+
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+
+  const filtered = products.filter(product => {
+    const categoryMatches =
+      activeCategory === "All" || product.category === activeCategory;
+
+    const text = [
+      product.name,
+      product.category,
+      product.description
+    ].join(" ").toLowerCase();
+
+    return categoryMatches && text.includes(searchText.toLowerCase());
+  });
+
+  document.querySelectorAll("#categories [data-cat]").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.cat === activeCategory
+    );
+  });
+
+  if (!filtered.length) {
+    const message = products.length
+      ? "No products match your search or selected category."
+      : "Our catalogue is being updated. Please check back soon.";
+
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🛍️</div>
+        <h3>${products.length ? "No matching products" : "Products coming soon"}</h3>
+        <p>${esc(message)}</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(product => {
+    const image = validImage(product.imageUrl);
+    const visual = image
+      ? `<img src="${esc(image)}" alt="${esc(product.name)}" loading="lazy">`
+      : `<span>${esc(product.emoji || "📦")}</span>`;
+
+    return `
+      <article class="product">
+        <div class="product-visual">${visual}</div>
+        <div class="product-body">
+          <div class="product-cat">${esc(product.category || "Other")}</div>
+          <h3>${esc(product.name)}</h3>
+          <div class="product-desc">${esc(product.description || "Contact the store for details.")}</div>
+          <div class="product-bottom">
+            <span class="price">${rupees(product.price)}</span>
+            <button class="add" onclick="addToCart('${esc(product.id)}')">+ Add</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function addToCart(id) {
+  const product = products.find(item => String(item.id) === String(id));
+  if (!product) return;
+
+  const row = cart.find(item => String(item.id) === String(id));
+
+  if (row) {
+    row.qty += 1;
+  } else {
+    cart.push({ id: product.id, qty: 1 });
+  }
+
+  save();
+  updateCartCount();
+  renderCart();
+}
+
+function updateCartCount() {
+  document.getElementById("cartCount").textContent =
+    cart.reduce((sum, item) => sum + Number(item.qty || 0), 0);
+}
+
+function openCart() {
+  document.getElementById("cartOverlay").classList.add("open");
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById("cartOverlay").classList.remove("open");
+}
+
+function renderCart() {
+  const target = document.getElementById("cartItems");
+
+  // Remove cart entries for products that no longer exist.
+  cart = cart.filter(row =>
+    products.some(product => String(product.id) === String(row.id))
+  );
+
+  if (!cart.length) {
+    target.innerHTML = `
+      <p style="color:#68738a;font-size:14px;padding:20px 0">
+        Your cart is empty. Add a product to get started.
+      </p>
+    `;
+    document.getElementById("cartTotal").textContent = "₹0";
+    save();
+    updateCartCount();
+    return;
+  }
+
+  target.innerHTML = cart.map(row => {
+    const product = products.find(
+      item => String(item.id) === String(row.id)
+    );
+
+    if (!product) return "";
+
+    return `
+      <div class="cart-row">
+        <div>
+          <strong>${esc(product.name)}</strong>
+          <small>${rupees(product.price)} each</small>
+          <div class="qty">
+            <button type="button" onclick="changeQty('${esc(product.id)}',-1)">−</button>
+            <span>${Number(row.qty)}</span>
+            <button type="button" onclick="changeQty('${esc(product.id)}',1)">+</button>
+          </div>
+        </div>
+        <strong>${rupees(Number(product.price) * Number(row.qty))}</strong>
+      </div>
+    `;
+  }).join("");
+
+  const total = cart.reduce((sum, row) => {
+    const product = products.find(
+      item => String(item.id) === String(row.id)
+    );
+    return sum + (product ? Number(product.price) * Number(row.qty) : 0);
+  }, 0);
+
+  document.getElementById("cartTotal").textContent = rupees(total);
+  updateCartCount();
+}
+
+function changeQty(id, change) {
+  const row = cart.find(item => String(item.id) === String(id));
+  if (!row) return;
+
+  row.qty += change;
+
+  if (row.qty <= 0) {
+    cart = cart.filter(item => String(item.id) !== String(id));
+  }
+
+  save();
+  renderCart();
+}
+
+document.getElementById("categories").addEventListener("click", event => {
+  const button = event.target.closest("[data-cat]");
+  if (!button) return;
+
+  activeCategory = button.dataset.cat;
+  renderProducts();
 });
-document.getElementById("categories").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;activeCategory=b.dataset.cat;renderProducts();});
-function showAdminLogin(e){if(e)e.preventDefault();document.getElementById("storefront").classList.add("hidden");document.getElementById("adminArea").classList.add("show");document.getElementById("adminLogin").classList.remove("hidden");document.getElementById("adminDashboard").classList.add("hidden");window.scrollTo(0,0);}
-function hideAdmin(e){if(e)e.preventDefault();document.getElementById("adminArea").classList.remove("show");document.getElementById("storefront").classList.remove("hidden");window.scrollTo(0,0);}
-document.getElementById("loginForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);if(f.get("username")==="admin"&&f.get("password")==="demo123"){document.getElementById("adminLogin").classList.add("hidden");document.getElementById("adminDashboard").classList.remove("hidden");adminTab("orders",document.querySelector(".admin-side button"));}else alert("Incorrect demo login.");});
-function adminLogout(){document.getElementById("adminDashboard").classList.add("hidden");document.getElementById("adminLogin").classList.remove("hidden");}
-function adminTab(tab,button){document.querySelectorAll(".admin-side button").forEach(b=>b.classList.remove("active"));if(button)button.classList.add("active");const c=document.getElementById("adminContent");
- if(tab==="orders"){c.innerHTML=`<h1>Orders</h1><p style="color:#68738a;font-size:13px">Orders created in this browser demo only.</p><div class="stats"><div class="stat"><small>Total Orders</small><strong>${orders.length}</strong></div><div class="stat"><small>Pending</small><strong>${orders.filter(o=>o.status==="Pending").length}</strong></div><div class="stat"><small>COD Value</small><strong>${rupees(orders.reduce((s,o)=>s+o.total,0))}</strong></div></div>${orders.length?`<div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Update</th></tr></thead><tbody>${orders.map(o=>`<tr><td>${esc(o.id)}<br><small>${new Date(o.createdAt).toLocaleDateString()}</small></td><td>${esc(o.name)}<br>${esc(o.phone)}<br><small>${esc(o.address)}</small></td><td>${o.items.map(i=>esc(i.name)+" × "+i.qty).join("<br>")}</td><td>${rupees(o.total)}</td><td>${esc(o.status)}</td><td><select onchange="updateStatus('${esc(o.id)}',this.value)">${["Pending","Confirmed","Shipped","Delivered","Cancelled"].map(s=>`<option ${s===o.status?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")}</tbody></table></div>`:'<p>No demo orders yet.</p>'}`;
- }else if(tab==="products"){c.innerHTML=`<h1>Products</h1><p style="color:#68738a;font-size:13px">Changes are stored in this browser only. Product images and secure cloud storage are not connected yet.</p><form class="form" id="productForm"><label>Product name<input name="name" required maxlength="80"></label><label>Category<select name="category"><option>Audio</option><option>Accessories</option><option>Smart Gadgets</option><option>Other</option></select></label><label>Price in ₹<input name="price" type="number" min="1" max="1000000" required></label><label>Emoji / icon<input name="emoji" maxlength="8" value="📦"></label><label>Short description<input name="desc" maxlength="140"></label><button class="btn btn-primary">Add Product</button></form><h3 style="margin-top:28px">Current Products</h3><div class="table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Action</th></tr></thead><tbody>${products.map(p=>`<tr><td>${esc(p.emoji)} ${esc(p.name)}</td><td>${esc(p.category)}</td><td>${rupees(p.price)}</td><td><button class="iconbtn" onclick="deleteProduct(${p.id})">Delete</button></td></tr>`).join("")}</tbody></table></div>`;
- document.getElementById("productForm").addEventListener("submit",ev=>{ev.preventDefault();const f=new FormData(ev.target);products.push({id:Date.now(),name:f.get("name").trim(),category:f.get("category"),price:Number(f.get("price")),emoji:f.get("emoji")||"📦",desc:f.get("desc")||"",tag:"New"});save();renderProducts();adminTab("products",document.querySelectorAll(".admin-side button")[1]);});
- }else{c.innerHTML=`<h1>Before Launch</h1><p style="color:#68738a;line-height:1.8">This is a front-end prototype, not a production-ready order system. Before accepting real customers, connect Supabase Auth for secure admin login, a Supabase database for products and orders, server-side validation, and Row Level Security. Set the verified WhatsApp business number in the code. Replace sample products and prices with the owner's actual inventory. The demo login is public in source code and must never be used on a live store.</p><div class="notice">Important: localStorage data stays in one browser/device and is not shared with the shop owner. Do not publish this prototype as a real checkout until the database and security setup are complete.</div>`;}
+
+document.getElementById("searchInput").addEventListener("input", event => {
+  searchText = event.target.value.trim();
+  renderProducts();
+});
+
+document.getElementById("checkoutForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (!cart.length) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  alert(
+    "Checkout is not connected to a secure order database yet. " +
+    "Please contact the store directly before treating an order as confirmed."
+  );
+
+  if (STORE_WA_NUMBER) {
+    const formData = new FormData(event.target);
+
+    const items = cart.map(row => {
+      const product = products.find(
+        item => String(item.id) === String(row.id)
+      );
+
+      return product
+        ? `${product.name} x ${row.qty} (${rupees(product.price)})`
+        : "";
+    }).filter(Boolean);
+
+    const total = cart.reduce((sum, row) => {
+      const product = products.find(
+        item => String(item.id) === String(row.id)
+      );
+      return sum + (product ? Number(product.price) * Number(row.qty) : 0);
+    }, 0);
+
+    const message = [
+      "Hello Smart Solutions, I would like to enquire about these products.",
+      "Name: " + formData.get("name"),
+      "Mobile: " + formData.get("phone"),
+      "Address: " + formData.get("address"),
+      "Items: " + items.join(", "),
+      "Total: " + rupees(total),
+      "Please confirm availability and delivery details."
+    ].join("\n");
+
+    window.open(
+      "https://wa.me/" + STORE_WA_NUMBER + "?text=" +
+      encodeURIComponent(message),
+      "_blank",
+      "noopener"
+    );
+  }
+});
+
+function contactWhatsApp() {
+  if (!STORE_WA_NUMBER) {
+    alert("The official store WhatsApp number has not been configured yet.");
+    return;
+  }
+
+  window.open(
+    "https://wa.me/" + STORE_WA_NUMBER,
+    "_blank",
+    "noopener"
+  );
 }
-function updateStatus(id,status){const o=orders.find(x=>x.id===id);if(o){o.status=status;save();adminTab("orders",document.querySelector(".admin-side button"));}}
-function deleteProduct(id){if(!confirm("Delete this demo product?"))return;products=products.filter(p=>p.id!==id);cart=cart.filter(x=>x.id!==id);save();renderProducts();updateCartCount();adminTab("products",document.querySelectorAll(".admin-side button")[1]);}
-document.getElementById("year").textContent=new Date().getFullYear();
-renderProducts();updateCartCount();
+
+function showAdminLogin(event) {
+  if (event) event.preventDefault();
+
+  document.getElementById("storefront").classList.add("hidden");
+  document.getElementById("adminArea").classList.add("show");
+  document.getElementById("adminLogin").classList.remove("hidden");
+  document.getElementById("adminDashboard").classList.add("hidden");
+
+  window.scrollTo(0, 0);
+}
+
+function hideAdmin(event) {
+  if (event) event.preventDefault();
+
+  document.getElementById("adminArea").classList.remove("show");
+  document.getElementById("storefront").classList.remove("hidden");
+
+  window.scrollTo(0, 0);
+}
+
+document.getElementById("loginForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = new FormData(event.target);
+
+  // TEMPORARY DEMO LOGIN ONLY. Replace with Supabase Auth.
+  if (
+    form.get("username") === "admin" &&
+    form.get("password") === "demo123"
+  ) {
+    document.getElementById("adminLogin").classList.add("hidden");
+    document.getElementById("adminDashboard").classList.remove("hidden");
+
+    adminTab("products", document.querySelector(".admin-side button"));
+  } else {
+    alert("Incorrect login details.");
+  }
+});
+
+function adminLogout() {
+  document.getElementById("adminDashboard").classList.add("hidden");
+  document.getElementById("adminLogin").classList.remove("hidden");
+}
+
+function adminTab(tab, button) {
+  document.querySelectorAll(".admin-side button").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  if (button) button.classList.add("active");
+
+  const content = document.getElementById("adminContent");
+
+  if (tab === "products") {
+    content.innerHTML = `
+      <h1>Manage Products</h1>
+      <p>Add the shop's actual products below. Products added here are saved only in this browser until a shared database is connected.</p>
+
+      <form id="productForm" class="admin-form">
+        <label class="admin-label">Product Name
+          <input name="name" required maxlength="100" placeholder="Enter product name">
+        </label>
+
+        <label class="admin-label">Category
+          <select name="category" required>
+            ${CATEGORIES.map(category =>
+              `<option value="${esc(category)}">${esc(category)}</option>`
+            ).join("")}
+          </select>
+        </label>
+
+        <label class="admin-label">Price (₹)
+          <input name="price" type="number" min="1" max="10000000" step="0.01" required placeholder="Enter price">
+        </label>
+
+        <label class="admin-label">Product Image URL (optional)
+          <input name="imageUrl" type="url" placeholder="https://example.com/product.jpg">
+        </label>
+
+        <label class="admin-label">Emoji / Icon (used when no image URL is supplied)
+          <input name="emoji" maxlength="8" value="📦">
+        </label>
+
+        <label class="admin-label">Short Description
+          <textarea name="description" rows="3" maxlength="300" placeholder="Product details"></textarea>
+        </label>
+
+        <button class="btn btn-primary" type="submit">＋ Add Product</button>
+      </form>
+
+      <h2 style="font-size:20px;margin-top:30px">Current Products (${products.length})</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Product</th><th>Category</th><th>Price</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            ${products.length ? products.map(product => `
+              <tr>
+                <td>${esc(product.name)}</td>
+                <td>${esc(product.category)}</td>
+                <td>${rupees(product.price)}</td>
+                <td>
+                  <button class="btn btn-danger" onclick="deleteProduct('${esc(product.id)}')">Delete</button>
+                </td>
+              </tr>
+            `).join("") : `
+              <tr><td colspan="4">No products have been added yet.</td></tr>
+            `}
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    document.getElementById("productForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const form = new FormData(event.target);
+      const name = String(form.get("name") || "").trim();
+      const price = Number(form.get("price"));
+
+      if (!name || !Number.isFinite(price) || price <= 0) {
+        alert("Enter a valid product name and price.");
+        return;
+      }
+
+      products.push({
+        id: "product-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7),
+        name,
+        category: String(form.get("category") || "Other"),
+        price,
+        imageUrl: validImage(String(form.get("imageUrl") || "").trim()),
+        emoji: String(form.get("emoji") || "📦").trim() || "📦",
+        description: String(form.get("description") || "").trim()
+      });
+
+      save();
+      renderProducts();
+
+      adminTab(
+        "products",
+        document.querySelectorAll(".admin-side button")[0]
+      );
+
+      alert("Product added to this browser's catalogue.");
+    });
+
+  } else if (tab === "orders") {
+    content.innerHTML = `
+      <h1>Orders</h1>
+      <p>Orders are not connected to a shared database yet.</p>
+
+      <div class="stats">
+        <div class="stat"><small>Saved Orders</small><strong>${orders.length}</strong></div>
+        <div class="stat"><small>Pending</small><strong>${orders.filter(order => order.status === "Pending").length}</strong></div>
+        <div class="stat"><small>Total Value</small><strong>${rupees(orders.reduce((sum, order) => sum + Number(order.total || 0), 0))}</strong></div>
+      </div>
+
+      <div class="notice">
+        Real customer orders must be submitted to a secure shared database
+        before this can be used as a production order dashboard.
+      </div>
+    `;
+
+  } else {
+    content.innerHTML = `
+      <h1>Before Launch</h1>
+      <p>
+        This page is a front-end prototype. Product data is stored in this
+        browser only. The temporary admin password is visible in the website
+        source and is not suitable for a live business.
+      </p>
+
+      <div class="notice">
+        Before accepting real orders, connect Supabase Auth, a shared database,
+        suitable Row Level Security policies and server-side order validation.
+        Never put the Supabase service-role key in this HTML file.
+      </div>
+    `;
+  }
+}
+
+function deleteProduct(id) {
+  const product = products.find(item => String(item.id) === String(id));
+  if (!product) return;
+
+  if (!confirm(`Delete "${product.name}"?`)) return;
+
+  products = products.filter(item => String(item.id) !== String(id));
+  cart = cart.filter(item => String(item.id) !== String(id));
+
+  save();
+  renderProducts();
+  updateCartCount();
+
+  adminTab(
+    "products",
+    document.querySelectorAll(".admin-side button")[0]
+  );
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderProducts();
+updateCartCount();
+renderCart();
 </script>
+
 </body>
-</html>
+  </html>
