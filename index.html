@@ -312,7 +312,6 @@ document.title = CONFIG.brandName;
 $("brandName").textContent = CONFIG.brandName;
 $("drawerTitle").textContent = CONFIG.brandName;
 $("footBrand").textContent = CONFIG.brandName;
-$("minAmt").textContent = rupee(CONFIG.minOrder);
 if (CONFIG.logo) { $("logo").src = CONFIG.logo; $("logo").style.display = "block"; }
 const waBase = "https://wa.me/" + CONFIG.whatsapp;
 $("chatBtn").href = waBase + "?text=" + encodeURIComponent("Hello, I want to place a wholesale order.");
