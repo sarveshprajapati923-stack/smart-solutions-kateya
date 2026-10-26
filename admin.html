@@ -3,146 +3,634 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
   <title>Smart Solutions | Admin Panel</title>
+
   <style>
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,sans-serif;background:#f3f5f9;color:#222}
-    header{background:#14213d;color:white;padding:18px}
-    header h2{margin:0;font-size:22px}
-    main{max-width:700px;margin:20px auto;padding:15px}
-    .card{background:white;padding:18px;border-radius:12px;margin-bottom:18px;box-shadow:0 2px 12px #0000000d}
-    h3{margin-top:0}
-    input,textarea,button{width:100%;padding:12px;margin:7px 0;border-radius:7px;font-size:15px}
-    input,textarea{border:1px solid #ddd}
-    button{border:0;background:#1769ff;color:white;font-weight:bold}
-    button:disabled{opacity:.6}
-    .danger{background:#c62828}
-    .product{border:1px solid #eee;padding:12px;border-radius:8px;margin:10px 0}
-    .muted{color:#666;font-size:13px}
-    #panel{display:none}
-    #message{white-space:pre-wrap;font-size:14px}
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f5f9;
+      color: #222;
+    }
+
+    header {
+      background: #14213d;
+      color: white;
+      padding: 18px;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 20px auto;
+      padding: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px #0000000d;
+    }
+
+    h3 { margin-top: 0; }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+
+    input, textarea {
+      border: 1px solid #ddd;
+      background: white;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      background: #1769ff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .danger { background: #c62828; }
+    .secondary { background: #475569; }
+    .success { background: #16803c; }
+    .warning { background: #b77900; }
+
+    .product {
+      border: 1px solid #e5e7eb;
+      padding: 14px;
+      border-radius: 9px;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .product h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .product p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .product img {
+      display: block;
+      max-width: 120px;
+      max-height: 120px;
+      object-fit: contain;
+      margin: 8px 0;
+      border-radius: 6px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .actions button {
+      margin: 0;
+    }
+
+    .muted {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .active {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .inactive {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    #panel { display: none; }
+
+    #message {
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 420px) {
+      main { padding: 10px; }
+      .card { padding: 14px; }
+    }
   </style>
 </head>
+
 <body>
-<header><h2>Smart Solutions — Admin</h2></header>
+<header>
+  <h2>Smart Solutions — Admin</h2>
+</header>
+
 <main>
   <section class="card" id="loginBox">
     <h3>Admin Login</h3>
-    <p class="muted">अपने अधिकृत Admin खाते से लॉगिन करें।</p>
-    <input id="email" type="email" placeholder="Admin email" autocomplete="username">
-    <input id="password" type="password" placeholder="Password" autocomplete="current-password">
-    <button id="loginBtn" onclick="login()">Login</button>
+    <p class="muted">केवल अधिकृत Admin लॉगिन कर सकता है।</p>
+
+    <form id="loginForm">
+      <input
+        id="email"
+        type="email"
+        placeholder="Admin email"
+        autocomplete="username"
+        required
+      >
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button id="loginBtn" type="submit">Login</button>
+    </form>
   </section>
 
   <section id="panel">
     <div class="card">
-      <h3>नया प्रोडक्ट जोड़ें</h3>
+      <h3 id="formTitle">नया प्रोडक्ट जोड़ें</h3>
+
       <form id="productForm">
-        <input name="name" placeholder="Product name" required maxlength="150">
-        <textarea name="description" placeholder="Description"></textarea>
-        <input name="price" type="number" placeholder="Price (₹)" min="0.01" step="0.01" required>
-        <input name="category" placeholder="Category" required maxlength="80">
-        <input name="stock" type="number" placeholder="Stock quantity" min="0" step="1" required>
-        <input name="image_url" type="url" placeholder="Product image URL (optional)">
-        <button type="submit">Add Product</button>
+        <input
+          name="name"
+          placeholder="Product name"
+          maxlength="150"
+          required
+        >
+
+        <textarea
+          name="description"
+          placeholder="Product description"
+          maxlength="5000"
+        ></textarea>
+
+        <input
+          name="price"
+          type="number"
+          placeholder="Price (₹)"
+          min="0.01"
+          step="0.01"
+          required
+        >
+
+        <input
+          name="category"
+          placeholder="Category"
+          maxlength="80"
+          required
+        >
+
+        <input
+          name="stock"
+          type="number"
+          placeholder="Stock quantity"
+          min="0"
+          step="1"
+          required
+        >
+
+        <input
+          name="image_url"
+          type="url"
+          placeholder="Product image URL (optional)"
+        >
+
+        <button id="saveBtn" type="submit">Add Product</button>
+        <button
+          id="cancelEditBtn"
+          class="secondary"
+          type="button"
+          hidden
+          onclick="cancelEdit()"
+        >Cancel Edit</button>
       </form>
     </div>
 
     <div class="card">
-      <h3>Products</h3>
-      <button onclick="loadProducts()">Refresh Products</button>
-      <div id="productsList">Loading...</div>
+      <h3>Products Management</h3>
+
+      <button id="refreshBtn" type="button" onclick="loadProducts()">
+        Refresh Products
+      </button>
+
+      <div id="productsList">Products लोड हो रहे हैं...</div>
     </div>
 
     <div class="card">
-      <button class="danger" onclick="logout()">Logout</button>
+      <button class="danger" type="button" onclick="logout()">
+        Logout
+      </button>
     </div>
   </section>
-  <p id="message" role="status"></p>
+
+  <p id="message" role="status" aria-live="polite"></p>
 </main>
 
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { createClient } from
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-/* Supabase project की public URL और publishable/anon key डालें।
-   Service-role/secret key यहाँ कभी न डालें। */
-const SUPABASE_URL = 'https://svkrdigrxclqwytilomd.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_R5A69_1VytJ7lP80Yg_9-g_oucHf4Lz';
+const SUPABASE_URL =
+  'https://svkrdigrxclqwytilomd.supabase.co';
+
+const SUPABASE_ANON_KEY =
+  'sb_publishable_R5A69_1VytJ7lP80Yg_9-g_oucHf4Lz';
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
 const message = document.getElementById('message');
-let supabase = null;
+const loginBox = document.getElementById('loginBox');
+const panel = document.getElementById('panel');
+const productsList = document.getElementById('productsList');
+const productForm = document.getElementById('productForm');
+const saveBtn = document.getElementById('saveBtn');
 
-if (!SUPABASE_URL.startsWith('https://') ||
-    SUPABASE_ANON_KEY.startsWith('PASTE_')) {
-  message.textContent = 'Setup बाकी है: Supabase URL और publishable/anon key डालनी होगी।';
-} else {
-  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let editingId = null;
+let products = [];
+
+function show(text) {
+  message.textContent = text;
 }
 
-function show(text) { message.textContent = text; }
-
-async function login() {
-  if (!supabase) return show('पहले Supabase configuration पूरी करें।');
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  const btn = document.getElementById('loginBtn');
-  btn.disabled = true;
-  try {
-    const { error } = await supabase.auth.signInWithPassword({email,password});
-    if (error) throw error;
-    document.getElementById('loginBox').style.display = 'none';
-    document.getElementById('panel').style.display = 'block';
-    await loadProducts();
-    show('Login सफल।');
-  } catch (e) {
-    show('Login नहीं हुआ: ' + e.message);
-  } finally {
-    btn.disabled = false;
+function setBusy(button, busy, busyText = 'Please wait...') {
+  if (busy) {
+    button.dataset.oldText = button.textContent;
+    button.textContent = busyText;
+    button.disabled = true;
+  } else {
+    button.textContent = button.dataset.oldText || button.textContent;
+    button.disabled = false;
   }
 }
 
+/* Get the current Supabase session token. */
+async function getToken() {
+  const { data, error } = await supabase.auth.getSession();
+
+  if (error || !data.session?.access_token) {
+    throw new Error('Session expired. Please login again.');
+  }
+
+  return data.session.access_token;
+}
+
+/* Call the protected Admin API. */
+async function adminRequest(method, body = null) {
+  const token = await getToken();
+
+  const options = {
+    method,
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    cache: 'no-store'
+  };
+
+  if (body !== null) {
+    options.headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify(body);
+  }
+
+  const response = await fetch('/api/admin/products', options);
+
+  const data = await response.json().catch(() => ({}));
+
+  if (response.status === 401) {
+    await supabase.auth.signOut();
+    loginBox.style.display = 'block';
+    panel.style.display = 'none';
+    throw new Error('Session expired. Please login again.');
+  }
+
+  if (!response.ok) {
+    throw new Error(data.error || 'Request failed');
+  }
+
+  return data;
+}
+
+/* Admin login. The API must independently verify admin permissions. */
+document.getElementById('loginForm').addEventListener(
+  'submit',
+  async event => {
+    event.preventDefault();
+
+    const button = document.getElementById('loginBtn');
+    setBusy(button, true, 'Logging in...');
+
+    try {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+
+      loginBox.style.display = 'none';
+      panel.style.display = 'block';
+
+      show('Login सफल। Admin permissions जाँची जा रही हैं...');
+
+      await loadProducts();
+
+      show('Admin Panel तैयार है।');
+    } catch (error) {
+      await supabase.auth.signOut();
+      loginBox.style.display = 'block';
+      panel.style.display = 'none';
+      show('Login/API error: ' + error.message);
+    } finally {
+      setBusy(button, false);
+    }
+  }
+);
+
+/* Load products using the protected Admin API. */
+async function loadProducts() {
+  productsList.textContent = 'Products लोड हो रहे हैं...';
+
+  try {
+    const data = await adminRequest('GET');
+    products = data.products || [];
+
+    productsList.replaceChildren();
+
+    if (products.length === 0) {
+      productsList.textContent = 'अभी कोई प्रोडक्ट नहीं है।';
+      return;
+    }
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product';
+
+      const title = document.createElement('h4');
+      title.textContent = product.name;
+
+      const status = document.createElement('span');
+      status.className =
+        'status ' + (product.active ? 'active' : 'inactive');
+      status.textContent = product.active ? 'Active' : 'Inactive';
+
+      const price = document.createElement('p');
+      price.textContent = `कीमत: ₹${product.price}`;
+
+      const category = document.createElement('p');
+      category.textContent = `Category: ${product.category || 'Uncategorized'}`;
+
+      const stock = document.createElement('p');
+      stock.textContent = `Stock: ${product.stock}`;
+
+      card.append(title, status, price, category, stock);
+
+      if (product.image_url) {
+        const image = document.createElement('img');
+        image.src = product.image_url;
+        image.alt = product.name;
+        image.loading = 'lazy';
+        image.referrerPolicy = 'no-referrer';
+        image.onerror = () => image.remove();
+        card.append(image);
+      }
+
+      if (product.description) {
+        const description = document.createElement('p');
+        description.textContent = product.description;
+        card.append(description);
+      }
+
+      const actions = document.createElement('div');
+      actions.className = 'actions';
+
+      const editButton = document.createElement('button');
+      editButton.type = 'button';
+      editButton.textContent = 'Edit';
+      editButton.addEventListener('click', () => startEdit(product));
+
+      const statusButton = document.createElement('button');
+      statusButton.type = 'button';
+      statusButton.className = 'warning';
+      statusButton.textContent =
+        product.active ? 'Deactivate' : 'Activate';
+
+      statusButton.addEventListener('click', () =>
+        toggleActive(product, statusButton)
+      );
+
+      const deleteButton = document.createElement('button');
+      deleteButton.type = 'button';
+      deleteButton.className = 'danger';
+      deleteButton.textContent = 'Delete';
+
+      deleteButton.addEventListener('click', () =>
+        deleteProduct(product, deleteButton)
+      );
+
+      actions.append(editButton, statusButton, deleteButton);
+      card.append(actions);
+      productsList.append(card);
+    });
+  } catch (error) {
+    productsList.textContent = error.message;
+    show('Products लोड नहीं हुए: ' + error.message);
+  }
+}
+
+/* Fill the form to edit an existing product. */
+function startEdit(product) {
+  editingId = product.id;
+
+  productForm.elements.name.value = product.name || '';
+  productForm.elements.description.value = product.description || '';
+  productForm.elements.price.value = product.price;
+  productForm.elements.category.value = product.category || '';
+  productForm.elements.stock.value = product.stock;
+  productForm.elements.image_url.value = product.image_url || '';
+
+  document.getElementById('formTitle').textContent = 'प्रोडक्ट एडिट करें';
+  saveBtn.textContent = 'Save Changes';
+  document.getElementById('cancelEditBtn').hidden = false;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  show('अब बदलाव करके Save Changes दबाएँ।');
+}
+
+function cancelEdit() {
+  editingId = null;
+  productForm.reset();
+
+  document.getElementById('formTitle').textContent = 'नया प्रोडक्ट जोड़ें';
+  saveBtn.textContent = 'Add Product';
+  document.getElementById('cancelEditBtn').hidden = true;
+
+  show('Edit cancel कर दिया गया।');
+}
+
+/* Add or update product. */
+productForm.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  setBusy(saveBtn, true, 'Saving...');
+
+  try {
+    const form = new FormData(productForm);
+
+    const body = {
+      name: String(form.get('name') || '').trim(),
+      description: String(form.get('description') || '').trim(),
+      price: Number(form.get('price')),
+      category: String(form.get('category') || '').trim(),
+      stock: Number(form.get('stock')),
+      image_url: String(form.get('image_url') || '').trim()
+    };
+
+    if (
+      !body.name ||
+      !body.category ||
+      !Number.isFinite(body.price) ||
+      body.price <= 0 ||
+      !Number.isSafeInteger(body.stock) ||
+      body.stock < 0
+    ) {
+      throw new Error('नाम, category, सही कीमत और stock भरें।');
+    }
+
+    if (editingId !== null) {
+      body.id = editingId;
+
+      await adminRequest('PATCH', body);
+      show('प्रोडक्ट अपडेट हो गया।');
+    } else {
+      await adminRequest('POST', body);
+      show('नया प्रोडक्ट जुड़ गया।');
+    }
+
+    cancelEdit();
+    await loadProducts();
+  } catch (error) {
+    show('Save error: ' + error.message);
+  } finally {
+    setBusy(saveBtn, false);
+  }
+});
+
+/* Activate or deactivate a product. */
+async function toggleActive(product, button) {
+  const action = product.active ? 'Inactive' : 'Active';
+
+  if (!confirm(`क्या "${product.name}" को ${action} करना है?`)) {
+    return;
+  }
+
+  setBusy(button, true, 'Updating...');
+
+  try {
+    await adminRequest('PATCH', {
+      id: product.id,
+      active: !product.active
+    });
+
+    show('Product status अपडेट हो गया।');
+    await loadProducts();
+  } catch (error) {
+    show('Status error: ' + error.message);
+    setBusy(button, false);
+  }
+}
+
+/* Permanently delete a product. */
+async function deleteProduct(product, button) {
+  if (
+    !confirm(
+      `क्या "${product.name}" को हमेशा के लिए Delete करना है?`
+    )
+  ) {
+    return;
+  }
+
+  setBusy(button, true, 'Deleting...');
+
+  try {
+    await adminRequest('DELETE', { id: product.id });
+
+    if (String(editingId) === String(product.id)) {
+      cancelEdit();
+    }
+
+    show('Product delete हो गया।');
+    await loadProducts();
+  } catch (error) {
+    show('Delete error: ' + error.message);
+    setBusy(button, false);
+  }
+}
+
+/* Logout. */
 async function logout() {
-  if (supabase) await supabase.auth.signOut();
-  document.getElementById('panel').style.display = 'none';
-  document.getElementById('loginBox').style.display = 'block';
+  await supabase.auth.signOut();
+
+  panel.style.display = 'none';
+  loginBox.style.display = 'block';
+
+  productForm.reset();
+  editingId = null;
+
+  document.getElementById('formTitle').textContent = 'नया प्रोडक्ट जोड़ें';
+  saveBtn.textContent = 'Add Product';
+  document.getElementById('cancelEditBtn').hidden = true;
+
   show('Logout हो गया।');
 }
 
-async function loadProducts() {
-  const box = document.getElementById('productsList');
-  box.textContent = 'Loading...';
-  try {
-    const response = await fetch('/api/products', {cache:'no-store'});
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Products load नहीं हुए');
-    box.replaceChildren();
-    if (!data.products?.length) {
-      box.textContent = 'अभी कोई active product नहीं है।';
-      return;
-    }
-    data.products.forEach(p => {
-      const item = document.createElement('div');
-      item.className = 'product';
-      const title = document.createElement('strong');
-      title.textContent = p.name;
-      const details = document.createElement('p');
-      details.textContent = `₹${p.price} | ${p.category || 'Uncategorized'} | Stock: ${p.stock}`;
-      item.append(title, details);
-      box.append(item);
-    });
-  } catch (e) {
-    box.textContent = e.message;
-  }
-}
-
-document.getElementById('productForm').addEventListener('submit', async event => {
-  event.preventDefault();
-  show('अभी product create API connect नहीं की गई है।');
-});
-
-window.login = login;
-window.logout = logout;
 window.loadProducts = loadProducts;
+window.logout = logout;
+window.cancelEdit = cancelEdit;
 </script>
 </body>
-          </html>
+  </html>
