@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Solutions | Admin Panel</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;background:#f3f5f9;color:#222}
+    header{background:#14213d;color:white;padding:18px}
+    header h2{margin:0;font-size:22px}
+    main{max-width:700px;margin:20px auto;padding:15px}
+    .card{background:white;padding:18px;border-radius:12px;margin-bottom:18px;box-shadow:0 2px 12px #0000000d}
+    h3{margin-top:0}
+    input,textarea,button{width:100%;padding:12px;margin:7px 0;border-radius:7px;font-size:15px}
+    input,textarea{border:1px solid #ddd}
+    button{border:0;background:#1769ff;color:white;font-weight:bold}
+    button:disabled{opacity:.6}
+    .danger{background:#c62828}
+    .product{border:1px solid #eee;padding:12px;border-radius:8px;margin:10px 0}
+    .muted{color:#666;font-size:13px}
+    #panel{display:none}
+    #message{white-space:pre-wrap;font-size:14px}
+  </style>
+</head>
+<body>
+<header><h2>Smart Solutions — Admin</h2></header>
+<main>
+  <section class="card" id="loginBox">
+    <h3>Admin Login</h3>
+    <p class="muted">अपने अधिकृत Admin खाते से लॉगिन करें।</p>
+    <input id="email" type="email" placeholder="Admin email" autocomplete="username">
+    <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+    <button id="loginBtn" onclick="login()">Login</button>
+  </section>
+
+  <section id="panel">
+    <div class="card">
+      <h3>नया प्रोडक्ट जोड़ें</h3>
+      <form id="productForm">
+        <input name="name" placeholder="Product name" required maxlength="150">
+        <textarea name="description" placeholder="Description"></textarea>
+        <input name="price" type="number" placeholder="Price (₹)" min="0.01" step="0.01" required>
+        <input name="category" placeholder="Category" required maxlength="80">
+        <input name="stock" type="number" placeholder="Stock quantity" min="0" step="1" required>
+        <input name="image_url" type="url" placeholder="Product image URL (optional)">
+        <button type="submit">Add Product</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Products</h3>
+      <button onclick="loadProducts()">Refresh Products</button>
+      <div id="productsList">Loading...</div>
+    </div>
+
+    <div class="card">
+      <button class="danger" onclick="logout()">Logout</button>
+    </div>
+  </section>
+  <p id="message" role="status"></p>
+</main>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+/* Supabase project की public URL और publishable/anon key डालें।
+   Service-role/secret key यहाँ कभी न डालें। */
+const SUPABASE_URL = 'PASTE_SUPABASE_PROJECT_URL';
+const SUPABASE_ANON_KEY = 'PASTE_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+
+const message = document.getElementById('message');
+let supabase = null;
+
+if (!SUPABASE_URL.startsWith('https://') ||
+    SUPABASE_ANON_KEY.startsWith('PASTE_')) {
+  message.textContent = 'Setup बाकी है: Supabase URL और publishable/anon key डालनी होगी।';
+} else {
+  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+function show(text) { message.textContent = text; }
+
+async function login() {
+  if (!supabase) return show('पहले Supabase configuration पूरी करें।');
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true;
+  try {
+    const { error } = await supabase.auth.signInWithPassword({email,password});
+    if (error) throw error;
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('panel').style.display = 'block';
+    await loadProducts();
+    show('Login सफल।');
+  } catch (e) {
+    show('Login नहीं हुआ: ' + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function logout() {
+  if (supabase) await supabase.auth.signOut();
+  document.getElementById('panel').style.display = 'none';
+  document.getElementById('loginBox').style.display = 'block';
+  show('Logout हो गया।');
+}
+
+async function loadProducts() {
+  const box = document.getElementById('productsList');
+  box.textContent = 'Loading...';
+  try {
+    const response = await fetch('/api/products', {cache:'no-store'});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Products load नहीं हुए');
+    box.replaceChildren();
+    if (!data.products?.length) {
+      box.textContent = 'अभी कोई active product नहीं है।';
+      return;
+    }
+    data.products.forEach(p => {
+      const item = document.createElement('div');
+      item.className = 'product';
+      const title = document.createElement('strong');
+      title.textContent = p.name;
+      const details = document.createElement('p');
+      details.textContent = `₹${p.price} | ${p.category || 'Uncategorized'} | Stock: ${p.stock}`;
+      item.append(title, details);
+      box.append(item);
+    });
+  } catch (e) {
+    box.textContent = e.message;
+  }
+}
+
+document.getElementById('productForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  show('अभी product create API connect नहीं की गई है।');
+});
+
+window.login = login;
+window.logout = logout;
+window.loadProducts = loadProducts;
+</script>
+</body>
+          </html>
