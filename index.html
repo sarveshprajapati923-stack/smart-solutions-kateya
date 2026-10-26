@@ -302,6 +302,34 @@ const rupee = n => "₹" + Number(n).toLocaleString("en-IN");
 const PLACEHOLDER = "data:image/svg+xml;utf8," + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="100%" height="100%" fill="#eee"/></svg>');
 
+  async function loadProducts() {
+  try {
+    const response = await fetch("/api/products");
+    if (!response.ok) throw new Error("Products load nahi hue");
+
+    const data = await response.json();
+
+    PRODUCTS = (data.products || []).map(p => ({
+      id: String(p.id),
+      name: p.name,
+      category: p.category || "Other",
+      price: Number(p.price),
+      stock: Number(p.stock),
+      minQty: 1,
+      image: p.image_url || "",
+      description: p.description || ""
+    }));
+
+    render();
+    renderCart();
+  } catch (error) {
+    console.error(error);
+    $("emptyMsg").textContent =
+      "Products load nahi hue. Kripya thodi der baad try karein.";
+    $("emptyMsg").classList.remove("hidden");
+  }
+  }
+  
 let state = { cat: "All", q: "", sort: "default", view: "home" };
 let cart = {};
 try { cart = JSON.parse(localStorage.getItem("cart_v1") || "{}"); } catch(e){ cart = {}; }
