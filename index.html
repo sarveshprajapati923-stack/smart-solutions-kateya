@@ -704,6 +704,94 @@ $("checkoutForm").addEventListener("submit", async (event) => {
   }
 });
 
+  /* ---------- Track My Order ---------- */
+
+const trackModal = $("trackOrderModal");
+
+$("openTrackOrder").addEventListener("click", () => {
+  trackModal.style.display = "flex";
+  $("trackOrderResult").textContent = "";
+});
+
+$("closeTrackOrder").addEventListener("click", () => {
+  trackModal.style.display = "none";
+});
+
+trackModal.addEventListener("click", event => {
+  if (event.target === trackModal) {
+    trackModal.style.display = "none";
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    trackModal.style.display = "none";
+  }
+});
+
+$("trackOrderForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const result = $("trackOrderResult");
+  const button = $("trackSubmitBtn");
+
+  const orderNumber = $("trackOrderNumber").value.trim();
+  const phone = $("trackOrderPhone").value.trim();
+
+  button.disabled = true;
+  button.textContent = "Searching...";
+  result.textContent = "आपका ऑर्डर खोजा जा रहा है...";
+
+  try {
+    const response = await fetch("/api/track-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        order_number: orderNumber,
+        customer_phone: phone
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.error || "ऑर्डर नहीं मिला। जानकारी चेक करें।"
+      );
+    }
+
+    result.replaceChildren();
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Your Order Details";
+    heading.style.marginBottom = "10px";
+    result.appendChild(heading);
+
+    const details = [
+      ["Order Number", data.order_number],
+      ["Order Status", data.status],
+      ["Total Amount", "₹" + Number(data.total_amount).toLocaleString("en-IN")],
+      ["Order Date", new Date(data.created_at).toLocaleString("en-IN")]
+    ];
+
+    details.forEach(([label, value]) => {
+      const p = document.createElement("p");
+      p.style.margin = "8px 0";
+      p.textContent = label + ": " + value;
+      result.appendChild(p);
+    });
+
+  } catch (error) {
+    result.textContent =
+      error.message || "समस्या हुई। कृपया दोबारा कोशिश करें।";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Track Order";
+  }
+});
+
 /* ---------- Start ---------- */
 render();
 renderCart();
