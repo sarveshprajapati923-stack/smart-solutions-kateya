@@ -299,7 +299,41 @@ const saveBtn = document.getElementById('saveBtn');
 
 let editingId = null;
 let products = [];
+let currentImageUrl = '';
+let selectedImageFile = null;
 
+const imageFile = document.getElementById('imageFile');
+const imagePreview = document.getElementById('imagePreview');
+
+imageFile.addEventListener('change', () => {
+  selectedImageFile = imageFile.files?.[0] || null;
+
+  if (!selectedImageFile) return;
+
+  const allowedTypes = [
+    'image/jpeg',
+    'image/png',
+    'image/webp'
+  ];
+
+  if (!allowedTypes.includes(selectedImageFile.type)) {
+    show('केवल JPG, PNG या WebP फोटो चुनें।');
+    imageFile.value = '';
+    selectedImageFile = null;
+    return;
+  }
+
+  if (selectedImageFile.size > 3 * 1024 * 1024) {
+    show('फोटो का आकार 3 MB से कम होना चाहिए।');
+    imageFile.value = '';
+    selectedImageFile = null;
+    return;
+  }
+
+  imagePreview.src = URL.createObjectURL(selectedImageFile);
+  imagePreview.hidden = false;
+});
+  
 function show(text) {
   message.textContent = text;
 }
