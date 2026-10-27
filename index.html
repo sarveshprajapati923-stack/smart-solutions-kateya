@@ -142,32 +142,6 @@
   .clear-cart{margin-top:10px;width:100%;background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer}
   .cart-empty{padding:40px 10px;text-align:center;color:var(--muted);font-size:16px}
 
-
-
-  /* ---------- Professional Checkout Popup ---------- */
-  .checkout-modal{
-    position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
-    padding:16px;background:rgba(15,20,40,.68);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)
-  }
-  .checkout-modal.open{display:flex}
-  .checkout-box{
-    width:100%;max-width:430px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:20px;
-    padding:24px 20px;box-shadow:0 20px 60px rgba(0,0,0,.28);animation:checkoutIn .2s ease-out
-  }
-  @keyframes checkoutIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-  .checkout-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-  .checkout-heading h2{margin:0;font-size:25px;line-height:1.25;color:var(--navy)}
-  .checkout-subtitle{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:18px}
-  .checkout-total{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:18px;font-size:16px;font-weight:700}
-  .checkout-total strong{color:var(--red);font-size:21px}
-  #checkoutForm{display:flex;flex-direction:column;gap:13px}
-  #checkoutForm input,#checkoutForm textarea{width:100%;display:block;padding:14px;border:1px solid #d9dce5;border-radius:11px;background:#fff;color:var(--navy);font-size:16px;line-height:1.4;outline:none}
-  #checkoutForm input:focus,#checkoutForm textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(163,38,42,.1)}
-  #checkoutForm textarea{min-height:105px;resize:vertical}
-  #checkoutForm .order-btn{margin-top:2px}
-  .checkout-cancel{width:100%;padding:12px;margin-top:10px;background:#f4f4f7;color:var(--navy);border:0;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer}
-  @media(max-width:380px){.checkout-box{padding:20px 15px}.checkout-heading h2{font-size:22px}}
-
   /* ---------- Floating chat ---------- */
   .chat{
     position:fixed;right:18px;bottom:22px;z-index:40;display:flex;align-items:center;gap:10px;
@@ -190,6 +164,33 @@
     h1,h2{font-size:28px}
     .notice{font-size:20px}
   }
+
+  /* Professional checkout feedback */
+  .checkout-field{display:block;width:100%;margin:0 0 11px}
+  .checkout-field input,.checkout-field textarea{display:block;width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--navy);font-size:16px;outline:none}
+  .checkout-field input:focus,.checkout-field textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(42,51,85,.09)}
+  .checkout-field [aria-invalid="true"]{border-color:#c62828;background:#fffafa}
+  .field-error{display:none;color:#b42318;font-size:13px;line-height:1.4;margin:5px 2px 0}
+  .field-error.show{display:block}
+  .feedback-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(16,20,32,.66);padding:18px;align-items:center;justify-content:center}
+  .feedback-modal.show{display:flex}
+  .feedback-card{width:100%;max-width:430px;max-height:90vh;overflow:auto;background:#fff;border-radius:22px;padding:25px 22px;box-shadow:0 22px 70px rgba(0,0,0,.25);color:var(--navy);animation:popIn .18s ease-out}
+  @keyframes popIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .feedback-icon{width:58px;height:58px;margin:0 auto 13px;border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:800}
+  .feedback-icon.success{background:#e7f7ed;color:#16834a}.feedback-icon.error{background:#fff0f0;color:#b42318}
+  .feedback-card h2{margin:0 0 9px;text-align:center;font-size:24px;line-height:1.25}
+  .feedback-card .feedback-lead{text-align:center;color:#626b80;font-size:14px;line-height:1.55;margin-bottom:18px}
+  .order-number-box{border:1px dashed #9ba7bc;background:#f7f8fb;border-radius:13px;padding:13px;margin:15px 0}
+  .order-number-label{font-size:12px;color:#69738b;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+  .order-number-value{font-size:15px;font-weight:800;overflow-wrap:anywhere;line-height:1.5;user-select:all}
+  .save-reminder{font-size:13px;line-height:1.55;background:#fff8e6;color:#775515;border-radius:11px;padding:12px;margin:13px 0 17px}
+  .feedback-actions{display:grid;gap:10px}
+  .feedback-action{width:100%;border:0;border-radius:11px;padding:14px 12px;font-size:15px;font-weight:750;cursor:pointer}
+  .feedback-action.primary{background:var(--red);color:#fff}.feedback-action.secondary{background:#eef1f6;color:var(--navy)}.feedback-action.ghost{background:transparent;color:#667085}
+  .feedback-error-detail{background:#fff5f5;border:1px solid #ffd9d9;border-radius:11px;padding:12px;color:#8f2020;font-size:14px;line-height:1.55;margin:14px 0}
+  #checkoutMessage{font-size:13px;line-height:1.5;margin-top:8px;color:#b42318}
+  @media(max-width:380px){.feedback-card{padding:22px 17px}.feedback-card h2{font-size:22px}}
+
 </style>
 </head>
 <body>
@@ -267,22 +268,23 @@
 
   </div>
 </div>
-<!-- Checkout Popup -->
-<div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-  <div class="checkout-box">
-    <div class="checkout-heading">
-      <h2 id="checkoutTitle">Complete Your Order</h2>
-      <button type="button" class="close" id="closeCheckout" aria-label="Close checkout">&times;</button>
+<!-- Professional order success / error popup -->
+<div class="feedback-modal" id="feedbackModal" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle" aria-describedby="feedbackLead">
+  <div class="feedback-card">
+    <div class="feedback-icon success" id="feedbackIcon" aria-hidden="true">✓</div>
+    <h2 id="feedbackTitle">ऑर्डर रिक्वेस्ट सफल!</h2>
+    <p class="feedback-lead" id="feedbackLead">आपकी ऑर्डर रिक्वेस्ट मिल गई है। नीचे दिया गया ऑर्डर नंबर सुरक्षित रखें।</p>
+    <div class="order-number-box" id="successOrderBox">
+      <div class="order-number-label">आपका Order Number</div>
+      <div class="order-number-value" id="successOrderNumber"></div>
     </div>
-    <p class="checkout-subtitle">अपनी डिलीवरी की जानकारी भरें। हमारी टीम ऑर्डर कन्फर्म करने के लिए आपसे संपर्क करेगी।</p>
-    <div class="checkout-total"><span>Order Total</span><strong id="checkoutTotal">₹0</strong></div>
-    <form id="checkoutForm">
-      <input id="customerName" type="text" placeholder="आपका पूरा नाम" maxlength="150" autocomplete="name" required>
-      <input id="customerPhone" type="tel" placeholder="10 अंकों का मोबाइल नंबर" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" autocomplete="tel" required>
-      <textarea id="customerAddress" placeholder="पूरा डिलीवरी पता और पिन कोड" maxlength="1000" autocomplete="street-address" required></textarea>
-      <button class="order-btn" id="orderBtn" type="submit">Place Order</button>
-    </form>
-    <button type="button" class="checkout-cancel" id="cancelCheckout">Continue Shopping</button>
+    <div class="save-reminder" id="successReminder">📌 <strong>ज़रूरी:</strong> Order Number कॉपी कर लें या इस स्क्रीन का स्क्रीनशॉट ले लें। ऑर्डर ट्रैक करने के लिए यही नंबर और अपना रजिस्टर्ड मोबाइल नंबर चाहिए होगा। हमारी टीम आपसे संपर्क करके टोकन राशि और ऑर्डर कन्फर्म करेगी।</div>
+    <div class="feedback-error-detail" id="feedbackErrorDetail" style="display:none"></div>
+    <div class="feedback-actions">
+      <button class="feedback-action primary" id="copyOrderNumber" type="button">📋 Order Number कॉपी करें</button>
+      <button class="feedback-action secondary" id="trackFromSuccess" type="button">ऑर्डर ट्रैक करें</button>
+      <button class="feedback-action ghost" id="closeFeedback" type="button">ठीक है, बंद करें</button>
+    </div>
   </div>
 </div>
 
@@ -309,9 +311,30 @@
   <div class="cart-foot" id="cartFoot">
     <div class="sum"><span>Total</span><span id="cartTotal">₹0</span></div>
     <div class="warn" id="cartWarn"></div>
-    <button type="button" class="order-btn" id="openCheckout">Proceed to Checkout</button>
-    <button class="clear-cart" id="clearCart">Clear cart</button>
-    <p id="checkoutMessage" role="status"></p>
+    <form id="checkoutForm" novalidate>
+  <label class="checkout-field" for="customerName">
+    <input id="customerName" name="customer_name" type="text" placeholder="आपका पूरा नाम" maxlength="150" autocomplete="name" aria-describedby="customerNameError">
+    <span class="field-error" id="customerNameError"></span>
+  </label>
+
+  <label class="checkout-field" for="customerPhone">
+    <input id="customerPhone" name="customer_phone" type="tel" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" inputmode="numeric" autocomplete="tel" aria-describedby="customerPhoneError">
+    <span class="field-error" id="customerPhoneError"></span>
+  </label>
+
+  <label class="checkout-field" for="customerAddress">
+    <textarea id="customerAddress" name="customer_address" placeholder="पूरा डिलीवरी पता और पिन कोड" maxlength="1000" rows="3" autocomplete="street-address" aria-describedby="customerAddressError"></textarea>
+    <span class="field-error" id="customerAddressError"></span>
+  </label>
+
+  <button class="order-btn" id="orderBtn" type="submit">
+    Place Order
+  </button>
+</form>
+
+<button class="clear-cart" id="clearCart">Clear cart</button>
+
+<p id="checkoutMessage" role="status"></p>
   </div>
 </aside>
 
@@ -658,82 +681,142 @@ function renderCart(){
   $("cartWarn").textContent = "";
 $("orderBtn").disabled = false;
 }
-/* ---------- Checkout Popup Controls ---------- */
-const checkoutModal = $("checkoutModal");
-function openCheckoutPopup(){
-  const ids = Object.keys(cart).filter(id => findProduct(id));
-  if (!ids.length){ alert("Please add products to your cart."); return; }
-  $("checkoutTotal").textContent = rupee(cartTotal());
-  closeDrawers();
-  checkoutModal.classList.add("open");
-}
-function closeCheckoutPopup(){ checkoutModal.classList.remove("open"); }
-$("openCheckout").addEventListener("click", openCheckoutPopup);
-$("closeCheckout").addEventListener("click", closeCheckoutPopup);
-$("cancelCheckout").addEventListener("click", closeCheckoutPopup);
-checkoutModal.addEventListener("click", event => { if (event.target === checkoutModal) closeCheckoutPopup(); });
-document.addEventListener("keydown", event => { if (event.key === "Escape") closeCheckoutPopup(); });
-
 $("clearCart").onclick = () => { cart = {}; saveCart(); render(); renderCart(); };
+function setFieldError(fieldId, message) {
+  const field = $(fieldId);
+  const error = $(fieldId + "Error");
+  field.setAttribute("aria-invalid", message ? "true" : "false");
+  error.textContent = message || "";
+  error.classList.toggle("show", Boolean(message));
+}
+function clearCheckoutErrors() {
+  ["customerName", "customerPhone", "customerAddress"].forEach(id => setFieldError(id, ""));
+  $("checkoutMessage").textContent = "";
+}
+function showFeedback(type, options = {}) {
+  const success = type === "success";
+  $("feedbackIcon").className = "feedback-icon " + (success ? "success" : "error");
+  $("feedbackIcon").textContent = success ? "✓" : "!";
+  $("feedbackTitle").textContent = success ? "ऑर्डर रिक्वेस्ट सफल!" : (options.title || "ऑर्डर पूरा नहीं हो सका");
+  $("feedbackLead").textContent = success
+    ? "आपकी ऑर्डर रिक्वेस्ट सफलतापूर्वक भेज दी गई है। नीचे दिया गया नंबर सुरक्षित रखें।"
+    : (options.message || "कृपया जानकारी जाँचकर दोबारा कोशिश करें।");
+  $("successOrderBox").style.display = success ? "block" : "none";
+  $("successReminder").style.display = success ? "block" : "none";
+  $("copyOrderNumber").style.display = success ? "block" : "none";
+  $("trackFromSuccess").style.display = success ? "block" : "none";
+  $("closeFeedback").textContent = success ? "ठीक है, बंद करें" : "समझ गया";
+  $("feedbackErrorDetail").style.display = success || !options.detail ? "none" : "block";
+  $("feedbackErrorDetail").textContent = options.detail || "";
+  if (success) $("successOrderNumber").textContent = options.orderNumber || "";
+  $("feedbackModal").classList.add("show");
+  document.body.style.overflow = "hidden";
+  $("closeFeedback").focus();
+}
+function closeFeedback() {
+  $("feedbackModal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+["customerName", "customerPhone", "customerAddress"].forEach(id => {
+  $(id).addEventListener("input", () => setFieldError(id, ""));
+});
 $("checkoutForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-
+  clearCheckoutErrors();
   const ids = Object.keys(cart).filter(id => findProduct(id));
-
   if (!ids.length) {
-    alert("Please add products to your cart.");
+    showFeedback("error", {title:"कार्ट खाली है", message:"ऑर्डर करने से पहले कृपया कम से कम एक प्रोडक्ट कार्ट में जोड़ें।"});
+    return;
+  }
+
+  const name = $("customerName").value.trim();
+  const phone = $("customerPhone").value.replace(/\D/g, "");
+  const address = $("customerAddress").value.trim();
+  let firstInvalid = null;
+  if (name.length < 2) { setFieldError("customerName", "कृपया अपना पूरा नाम भरें (कम से कम 2 अक्षर)।"); firstInvalid ||= $("customerName"); }
+  if (!/^[6-9][0-9]{9}$/.test(phone)) { setFieldError("customerPhone", "कृपया सही 10 अंकों का मोबाइल नंबर डालें, जो 6, 7, 8 या 9 से शुरू हो।"); firstInvalid ||= $("customerPhone"); }
+  if (address.length < 8) { setFieldError("customerAddress", "कृपया पूरा डिलीवरी पता और PIN कोड भरें।"); firstInvalid ||= $("customerAddress"); }
+  if (firstInvalid) {
+    firstInvalid.focus();
+    $("checkoutMessage").textContent = "लाल रंग में दिखाई गई जानकारी सही करें, फिर दोबारा ऑर्डर करें।";
     return;
   }
 
   const button = $("orderBtn");
   button.disabled = true;
-  button.textContent = "Placing Order...";
-
+  button.textContent = "ऑर्डर भेजा जा रहा है…";
   try {
     const payload = {
-      customer_name: $("customerName").value.trim(),
-      customer_phone: $("customerPhone").value.trim(),
-      customer_address: $("customerAddress").value.trim(),
-      items: ids.map(id => ({
-        id: Number(id),
-        qty: Number(cart[id].qty)
-      }))
+      customer_name: name,
+      customer_phone: phone,
+      customer_address: address,
+      items: ids.map(id => ({ id: Number(id), qty: Number(cart[id].qty) }))
     };
-
     const response = await fetch("/api/orders", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(payload)
     });
-
-    const data = await response.json();
-
+    let data;
+    try { data = await response.json(); }
+    catch (_) { throw new Error("सर्वर से सही जवाब नहीं मिला। आपका ऑर्डर कन्फर्म हुआ है या नहीं, यह जाँचने के लिए दोबारा प्रयास करने से पहले दुकान से संपर्क करें।"); }
     if (!response.ok) {
-      throw new Error(data.error || "Order submit nahi hua.");
+      const raw = data.error || data.message || "";
+      let friendly = "ऑर्डर सर्वर तक नहीं पहुँच सका। कृपया इंटरनेट जाँचकर कुछ देर बाद दोबारा कोशिश करें।";
+      if (response.status === 400) friendly = raw || "जानकारी अधूरी या गलत है। नाम, मोबाइल नंबर और पता जाँचें।";
+      else if (response.status === 429) friendly = "बहुत जल्दी-जल्दी प्रयास किए गए हैं। कृपया एक-दो मिनट बाद कोशिश करें।";
+      else if (response.status >= 500) friendly = "दुकान के सर्वर में अस्थायी समस्या है। आपकी रिक्वेस्ट कन्फर्म नहीं हो सकी। कृपया थोड़ी देर बाद कोशिश करें या दुकान से संपर्क करें।";
+      showFeedback("error", {title:"ऑर्डर भेजने में समस्या", message:friendly, detail:"कृपया नाम, मोबाइल नंबर और पता जाँचें। समस्या बनी रहे तो दुकान से संपर्क करें। अगर पहले से ऑर्डर नंबर मिला हो या पैसे कटे हों, तो दोबारा ऑर्डर करने से पहले पुष्टि करें।"});
+      return;
     }
 
+    const orderNumber = data.order_number || data.orderNumber || data.order?.order_number;
+    if (!orderNumber) {
+      showFeedback("error", {title:"ऑर्डर की पुष्टि नहीं मिली", message:"सर्वर से ऑर्डर नंबर नहीं मिला, इसलिए हम ऑर्डर सफल होने की पुष्टि नहीं कर पा रहे हैं। दोबारा ऑर्डर करने से पहले दुकान से संपर्क करें।", detail:data.error || "Response में order_number उपलब्ध नहीं था।"});
+      return;
+    }
+
+    const savedPhone = phone;
     cart = {};
     saveCart();
     render();
     renderCart();
     $("checkoutForm").reset();
-    closeCheckoutPopup();
-
-    alert(
-      "Order request successful!\n" +
-      "Order Number: " + (data.order_number || "Received") +
-      "\nOwner aapse contact karke 20% token aur order confirm karega."
-    );
-
+    showFeedback("success", {orderNumber:String(orderNumber)});
+    $("copyOrderNumber").dataset.orderNumber = String(orderNumber);
+    $("trackFromSuccess").dataset.phone = savedPhone;
   } catch (error) {
-    alert(error.message || "Order submit nahi hua. Dobara try karein.");
+    console.error("Order submit error:", error);
+    showFeedback("error", {title:"कनेक्शन में समस्या", message:"ऑर्डर भेजते समय कनेक्शन या सर्वर की समस्या आई। कृपया इंटरनेट जाँचें। अगर पहले से ऑर्डर नंबर मिला हो या भुगतान किया हो, तो दोबारा ऑर्डर करने से पहले दुकान से पुष्टि करें।", detail:"इंटरनेट कनेक्शन जाँचें और थोड़ी देर बाद कोशिश करें। अगर समस्या बनी रहे तो दुकान से संपर्क करें।"});
   } finally {
     button.disabled = false;
     button.textContent = "Place Order";
   }
 });
+
+$("copyOrderNumber").addEventListener("click", async () => {
+  const value = $("copyOrderNumber").dataset.orderNumber || $("successOrderNumber").textContent;
+  try {
+    await navigator.clipboard.writeText(value);
+    $("copyOrderNumber").textContent = "✓ Order Number कॉपी हो गया";
+  } catch (_) {
+    const range = document.createRange();
+    range.selectNodeContents($("successOrderNumber"));
+    const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
+    $("copyOrderNumber").textContent = "नंबर सेलेक्ट है — Copy करें";
+  }
+});
+$("trackFromSuccess").addEventListener("click", () => {
+  const number = $("copyOrderNumber").dataset.orderNumber || $("successOrderNumber").textContent;
+  const phone = $("trackFromSuccess").dataset.phone || "";
+  closeFeedback();
+  $("trackOrderNumber").value = number;
+  $("trackOrderPhone").value = phone;
+  $("trackOrderResult").textContent = "";
+  $("trackOrderModal").style.display = "flex";
+});
+$("closeFeedback").addEventListener("click", closeFeedback);
+$("feedbackModal").addEventListener("click", event => { if (event.target === $("feedbackModal")) closeFeedback(); });
 
   /* ---------- Track My Order ---------- */
 
@@ -757,6 +840,7 @@ trackModal.addEventListener("click", event => {
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") {
     trackModal.style.display = "none";
+    closeFeedback();
   }
 });
 
@@ -794,6 +878,10 @@ $("trackOrderForm").addEventListener("submit", async event => {
     }
 
     result.replaceChildren();
+    result.style.color = "#176b45";
+    result.style.background = "#f0fbf4";
+    result.style.padding = "12px";
+    result.style.borderRadius = "9px";
 
     const heading = document.createElement("h3");
     heading.textContent = "Your Order Details";
@@ -815,8 +903,11 @@ $("trackOrderForm").addEventListener("submit", async event => {
     });
 
   } catch (error) {
-    result.textContent =
-      error.message || "समस्या हुई। कृपया दोबारा कोशिश करें।";
+    result.textContent = error.message || "ऑर्डर खोजते समय समस्या हुई। कृपया ऑर्डर नंबर और मोबाइल नंबर जाँचकर दोबारा कोशिश करें।";
+    result.style.color = "#b42318";
+    result.style.background = "#fff5f5";
+    result.style.padding = "10px";
+    result.style.borderRadius = "9px";
   } finally {
     button.disabled = false;
     button.textContent = "Track Order";
