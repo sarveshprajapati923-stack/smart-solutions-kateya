@@ -553,9 +553,8 @@ function renderCart(){
   });
   const total = cartTotal();
   $("cartTotal").textContent = rupee(total);
-  const short = CONFIG.minOrder - total;
-  $("cartWarn").textContent = short > 0 ? "Minimum order " + rupee(CONFIG.minOrder) + " hai. " + rupee(short) + " ka aur add karein." : "";
-  $("orderBtn").disabled = short > 0;
+  $("cartWarn").textContent = "";
+$("orderBtn").disabled = false;
 }
 $("clearCart").onclick = () => { cart = {}; saveCart(); render(); renderCart(); };
 $("orderBtn").onclick = () => {
