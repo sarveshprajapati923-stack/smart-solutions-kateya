@@ -589,17 +589,64 @@ function renderCart(){
 $("orderBtn").disabled = false;
 }
 $("clearCart").onclick = () => { cart = {}; saveCart(); render(); renderCart(); };
-$("orderBtn").onclick = () => {
+$("checkoutForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
   const ids = Object.keys(cart).filter(id => findProduct(id));
-  if (!ids.length || cartTotal() < CONFIG.minOrder) return;
-  let msg = "Hello, I want to place a wholesale order:\n\n";
-  ids.forEach((id, i) => {
-    const p = findProduct(id), q = cart[id].qty;
-    msg += (i + 1) + ". " + p.name + " - " + q + " x " + rupee(p.price) + " = " + rupee(p.price * q) + "\n";
-  });
-  msg += "\nTotal: " + rupee(cartTotal()) + " (shipping extra)";
-  window.open(waBase + "?text=" + encodeURIComponent(msg), "_blank");
-};
+
+  if (!ids.length) {
+    alert("Please add products to your cart.");
+    return;
+  }
+
+  const button = $("orderBtn");
+  button.disabled = true;
+  button.textContent = "Placing Order...";
+
+  try {
+    const payload = {
+      customer_name: $("customerName").value.trim(),
+      customer_phone: $("customerPhone").value.trim(),
+      customer_address: $("customerAddress").value.trim(),
+      items: ids.map(id => ({
+        id: Number(id),
+        qty: Number(cart[id].qty)
+      }))
+    };
+
+    const response = await fetch("/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Order submit nahi hua.");
+    }
+
+    cart = {};
+    saveCart();
+    render();
+    renderCart();
+    $("checkoutForm").reset();
+
+    alert(
+      "Order request successful!\n" +
+      "Order Number: " + (data.order_number || "Received") +
+      "\nOwner aapse contact karke 20% token aur order confirm karega."
+    );
+
+  } catch (error) {
+    alert(error.message || "Order submit nahi hua. Dobara try karein.");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Place Order";
+  }
+});
 
 /* ---------- Start ---------- */
 render();
