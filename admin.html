@@ -229,11 +229,20 @@
           required
         >
 
-        <input
-          name="image_url"
-          type="url"
-          placeholder="Product image URL (optional)"
-        >
+        <label for="imageFile"><b>Product Photo (Gallery से चुनें)</b></label>
+<input
+  id="imageFile"
+  name="image_file"
+  type="file"
+  accept="image/jpeg,image/png,image/webp"
+>
+<img
+  id="imagePreview"
+  alt="Product preview"
+  hidden
+  style="max-width:150px;max-height:150px;object-fit:contain;"
+>
+<p class="muted">JPG, PNG या WebP • अधिकतम 3 MB</p>
 
         <button id="saveBtn" type="submit">Add Product</button>
         <button
