@@ -208,8 +208,40 @@
   <div class="cart-foot" id="cartFoot">
     <div class="sum"><span>Total</span><span id="cartTotal">₹0</span></div>
     <div class="warn" id="cartWarn"></div>
-    <button class="order-btn" id="orderBtn">Order on WhatsApp</button>
-    <button class="clear-cart" id="clearCart">Clear cart</button>
+    <form id="checkoutForm">
+  <input
+    id="customerName"
+    type="text"
+    placeholder="आपका पूरा नाम"
+    maxlength="150"
+    required
+  >
+
+  <input
+    id="customerPhone"
+    type="tel"
+    placeholder="10 अंकों का मोबाइल नंबर"
+    pattern="[6-9][0-9]{9}"
+    maxlength="10"
+    inputmode="numeric"
+    required
+  >
+
+  <textarea
+    id="customerAddress"
+    placeholder="पूरा डिलीवरी पता और पिन कोड"
+    maxlength="1000"
+    required
+  ></textarea>
+
+  <button class="order-btn" id="orderBtn" type="submit">
+    Place Order
+  </button>
+</form>
+
+<button class="clear-cart" id="clearCart">Clear cart</button>
+
+<p id="checkoutMessage" role="status"></p>
   </div>
 </aside>
 
