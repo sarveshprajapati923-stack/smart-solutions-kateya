@@ -588,6 +588,10 @@ imagePreview.hidden = !currentImageUrl;
 function cancelEdit() {
   editingId = null;
   productForm.reset();
+  currentImageUrl = '';
+selectedImageFile = null;
+imagePreview.removeAttribute('src');
+imagePreview.hidden = true;
 
   document.getElementById('formTitle').textContent = 'नया प्रोडक्ट जोड़ें';
   saveBtn.textContent = 'Add Product';
