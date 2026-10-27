@@ -616,6 +616,7 @@ productForm.addEventListener('submit', async event => {
       category: String(form.get('category') || '').trim(),
       stock: Number(form.get('stock')),
     };
+    body.image_url = await uploadProductImage(selectedImageFile);
 
     if (
       !body.name ||
