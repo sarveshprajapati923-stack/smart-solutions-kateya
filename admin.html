@@ -572,8 +572,11 @@ function startEdit(product) {
   productForm.elements.price.value = product.price;
   productForm.elements.category.value = product.category || '';
   productForm.elements.stock.value = product.stock;
-  productForm.elements.image_url.value = product.image_url || '';
-
+currentImageUrl = product.image_url || '';
+selectedImageFile = null;
+imageFile.value = '';
+imagePreview.src = currentImageUrl;
+imagePreview.hidden = !currentImageUrl;
   document.getElementById('formTitle').textContent = 'प्रोडक्ट एडिट करें';
   saveBtn.textContent = 'Save Changes';
   document.getElementById('cancelEditBtn').hidden = false;
