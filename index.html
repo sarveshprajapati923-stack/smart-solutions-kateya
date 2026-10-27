@@ -142,6 +142,32 @@
   .clear-cart{margin-top:10px;width:100%;background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer}
   .cart-empty{padding:40px 10px;text-align:center;color:var(--muted);font-size:16px}
 
+
+
+  /* ---------- Professional Checkout Popup ---------- */
+  .checkout-modal{
+    position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
+    padding:16px;background:rgba(15,20,40,.68);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)
+  }
+  .checkout-modal.open{display:flex}
+  .checkout-box{
+    width:100%;max-width:430px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:20px;
+    padding:24px 20px;box-shadow:0 20px 60px rgba(0,0,0,.28);animation:checkoutIn .2s ease-out
+  }
+  @keyframes checkoutIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .checkout-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+  .checkout-heading h2{margin:0;font-size:25px;line-height:1.25;color:var(--navy)}
+  .checkout-subtitle{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:18px}
+  .checkout-total{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:18px;font-size:16px;font-weight:700}
+  .checkout-total strong{color:var(--red);font-size:21px}
+  #checkoutForm{display:flex;flex-direction:column;gap:13px}
+  #checkoutForm input,#checkoutForm textarea{width:100%;display:block;padding:14px;border:1px solid #d9dce5;border-radius:11px;background:#fff;color:var(--navy);font-size:16px;line-height:1.4;outline:none}
+  #checkoutForm input:focus,#checkoutForm textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(163,38,42,.1)}
+  #checkoutForm textarea{min-height:105px;resize:vertical}
+  #checkoutForm .order-btn{margin-top:2px}
+  .checkout-cancel{width:100%;padding:12px;margin-top:10px;background:#f4f4f7;color:var(--navy);border:0;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer}
+  @media(max-width:380px){.checkout-box{padding:20px 15px}.checkout-heading h2{font-size:22px}}
+
   /* ---------- Floating chat ---------- */
   .chat{
     position:fixed;right:18px;bottom:22px;z-index:40;display:flex;align-items:center;gap:10px;
@@ -241,6 +267,25 @@
 
   </div>
 </div>
+<!-- Checkout Popup -->
+<div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+  <div class="checkout-box">
+    <div class="checkout-heading">
+      <h2 id="checkoutTitle">Complete Your Order</h2>
+      <button type="button" class="close" id="closeCheckout" aria-label="Close checkout">&times;</button>
+    </div>
+    <p class="checkout-subtitle">अपनी डिलीवरी की जानकारी भरें। हमारी टीम ऑर्डर कन्फर्म करने के लिए आपसे संपर्क करेगी।</p>
+    <div class="checkout-total"><span>Order Total</span><strong id="checkoutTotal">₹0</strong></div>
+    <form id="checkoutForm">
+      <input id="customerName" type="text" placeholder="आपका पूरा नाम" maxlength="150" autocomplete="name" required>
+      <input id="customerPhone" type="tel" placeholder="10 अंकों का मोबाइल नंबर" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" autocomplete="tel" required>
+      <textarea id="customerAddress" placeholder="पूरा डिलीवरी पता और पिन कोड" maxlength="1000" autocomplete="street-address" required></textarea>
+      <button class="order-btn" id="orderBtn" type="submit">Place Order</button>
+    </form>
+    <button type="button" class="checkout-cancel" id="cancelCheckout">Continue Shopping</button>
+  </div>
+</div>
+
 <!-- Side menu -->
 <div class="overlay" id="overlay"></div>
 <nav class="drawer left" id="menuDrawer">
@@ -264,40 +309,9 @@
   <div class="cart-foot" id="cartFoot">
     <div class="sum"><span>Total</span><span id="cartTotal">₹0</span></div>
     <div class="warn" id="cartWarn"></div>
-    <form id="checkoutForm">
-  <input
-    id="customerName"
-    type="text"
-    placeholder="आपका पूरा नाम"
-    maxlength="150"
-    required
-  >
-
-  <input
-    id="customerPhone"
-    type="tel"
-    placeholder="10 अंकों का मोबाइल नंबर"
-    pattern="[6-9][0-9]{9}"
-    maxlength="10"
-    inputmode="numeric"
-    required
-  >
-
-  <textarea
-    id="customerAddress"
-    placeholder="पूरा डिलीवरी पता और पिन कोड"
-    maxlength="1000"
-    required
-  ></textarea>
-
-  <button class="order-btn" id="orderBtn" type="submit">
-    Place Order
-  </button>
-</form>
-
-<button class="clear-cart" id="clearCart">Clear cart</button>
-
-<p id="checkoutMessage" role="status"></p>
+    <button type="button" class="order-btn" id="openCheckout">Proceed to Checkout</button>
+    <button class="clear-cart" id="clearCart">Clear cart</button>
+    <p id="checkoutMessage" role="status"></p>
   </div>
 </aside>
 
@@ -644,6 +658,22 @@ function renderCart(){
   $("cartWarn").textContent = "";
 $("orderBtn").disabled = false;
 }
+/* ---------- Checkout Popup Controls ---------- */
+const checkoutModal = $("checkoutModal");
+function openCheckoutPopup(){
+  const ids = Object.keys(cart).filter(id => findProduct(id));
+  if (!ids.length){ alert("Please add products to your cart."); return; }
+  $("checkoutTotal").textContent = rupee(cartTotal());
+  closeDrawers();
+  checkoutModal.classList.add("open");
+}
+function closeCheckoutPopup(){ checkoutModal.classList.remove("open"); }
+$("openCheckout").addEventListener("click", openCheckoutPopup);
+$("closeCheckout").addEventListener("click", closeCheckoutPopup);
+$("cancelCheckout").addEventListener("click", closeCheckoutPopup);
+checkoutModal.addEventListener("click", event => { if (event.target === checkoutModal) closeCheckoutPopup(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeCheckoutPopup(); });
+
 $("clearCart").onclick = () => { cart = {}; saveCart(); render(); renderCart(); };
 $("checkoutForm").addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -689,6 +719,7 @@ $("checkoutForm").addEventListener("submit", async (event) => {
     render();
     renderCart();
     $("checkoutForm").reset();
+    closeCheckoutPopup();
 
     alert(
       "Order request successful!\n" +
