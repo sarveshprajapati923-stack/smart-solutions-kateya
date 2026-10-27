@@ -330,7 +330,7 @@ const PLACEHOLDER = "data:image/svg+xml;utf8," + encodeURIComponent(
   }
   }
   
-let state = { cat: "All", q: "", sort: "default", view: "home" };
+let state = { cat: "All", q: "", sort: "default", view: "products" };
 let cart = {};
 try { cart = JSON.parse(localStorage.getItem("cart_v1") || "{}"); } catch(e){ cart = {}; }
 const saveCart = () => { try { localStorage.setItem("cart_v1", JSON.stringify(cart)); } catch(e){} };
